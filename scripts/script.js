@@ -1,3 +1,4 @@
+import { apiKeyOMDb } from "../apiKeys/apiKeyOMDb.js"
 
 if(window.location.pathname === '/' || window.location.pathname === '/index.html') {
     console.log('index.html');
@@ -12,3 +13,6 @@ if(window.location.pathname === '/' || window.location.pathname === '/index.html
     console.log('search.html');
 
 }
+
+console.log(apiKeyOMDb);
+
