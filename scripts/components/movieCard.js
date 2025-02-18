@@ -8,6 +8,12 @@ function createMovieCard(movie) {
     posterImgHTML.src = movie.Poster;
 
 
+    const posterLinkHTML = document.createElement("a")
+    posterLinkHTML.href =`./movie.html?imdbid=${movie.imdbID}`;
+    posterLinkHTML.appendChild(posterImgHTML);
+
+
+    // Favoritknappen <<<saknas>>>
     const favoriteImgHTML = document.createElement("icon");
     favoriteImgHTML.classList.add("card-container__favorite-icon")
     
@@ -34,7 +40,7 @@ function createMovieCard(movie) {
     // Kortbehållaren
     const cardSectionHTML = document.createElement("section");
     cardSectionHTML.classList.add("card-container__card")
-    cardSectionHTML.appendChild(posterImgHTML);
+    cardSectionHTML.appendChild(posterLinkHTML);
     cardSectionHTML.appendChild(innerDivHTML);
 
     const cardContainerREF = document.getElementById("cardContainer");
