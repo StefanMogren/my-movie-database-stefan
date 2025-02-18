@@ -3,6 +3,7 @@ import { fetchTopMoviesAPI } from "./modules/api.js";
 import { renderTrailers } from "./modules/caroussel.js";
 import { randomizeNumbers } from "./utils/utils.js";
 import { oData } from "./data/data.js";
+import { createMovieCard } from "./components/movieCard.js";
 
 if(window.location.pathname === '/' || window.location.pathname === '/index.html') {
     console.log('index.html');
@@ -51,4 +52,6 @@ function pickTopMovies(amount) {
     const movies = pickRandomMovies(amount)
     
     console.log(movies)
+
+    movies.forEach( movie => createMovieCard(movie))
 }

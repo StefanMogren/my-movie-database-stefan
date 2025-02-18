@@ -82,3 +82,42 @@ body {
     border: none;
     cursor: pointer;
 }
+
+.popular-title {
+    color: white;
+    text-align: center;
+}
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin: 2rem;
+}
+
+.card-container__card {
+    flex-basis: 150px;
+    flex-grow: 1;
+    max-width: 200px;
+    background-color: rgb(30, 30, 30);
+    border-radius: 0 15px 15px 15px;
+}
+
+.card-container__poster {
+    width: 100%;
+    aspect-ratio: 1 / 1.5;
+    border-top-right-radius: 15px;
+}
+
+.card-container__inner-container {
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 5rem;
+}
+
+.card-container__title {
+    color: white;
+    font-size: 1rem;
+}
