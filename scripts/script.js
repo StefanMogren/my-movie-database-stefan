@@ -1,5 +1,7 @@
 import { apiKeyOMDb } from "../apiKeys/apiKeyOMDb.js"
 
+import { fetchTopMovies } from "./modules/api.js";
+
 if(window.location.pathname === '/' || window.location.pathname === '/index.html') {
     console.log('index.html');
 
@@ -14,5 +16,5 @@ if(window.location.pathname === '/' || window.location.pathname === '/index.html
 
 }
 
-console.log(apiKeyOMDb);
+console.log(await fetchTopMovies());
 
