@@ -5,26 +5,43 @@ import { randomizeNumbers } from "./utils/utils.js";
 import { oData } from "./data/data.js";
 import { createMovieCard } from "./components/movieCard.js";
 
+// Om index.html-sidan laddas körs detta
 if(window.location.pathname === '/' || window.location.pathname === '/index.html') {
     console.log('index.html');
+    // oData.movies definieras samt får alla filmer från API:et när fetchTopMoviesAPI() körs
+    await fetchTopMoviesAPI();
+    pickMovieTrailers(5);
+    pickTopMovies(20);
     
+
+// Om favorites.html laddas körs detta
 } else if(window.location.pathname === '/favorites.html') {
     console.log('favorites.html');
     
+    
+// Om movie.html laddas körs detta
 } else if(window.location.pathname === '/movie.html') {
     console.log('movie.html');
+    window.onload = () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const imdbID = urlParams.get("imdbid")
+        if(imdbID) {
+            console.log(`The IMDb ID is ${imdbID}`);
+            
+        } else {
+            console.log("The IMDb ID is missing...");
+            
+        }
+    }
     
+
+// Om search.html laddas körs detta
 } else if(window.location.pathname === '/search.html') {
     console.log('search.html');
     
+    
 }
 
-// oData.movies definieras samt får alla filmer från API:et
-await fetchTopMoviesAPI();
-
-
-
-pickMovieTrailers(5);
 
 function pickMovieTrailers(amount) {
     const movies = pickRandomMovies(amount);
@@ -46,12 +63,10 @@ function pickRandomMovies(amount) {
 }
 
 
-pickTopMovies(20);
-
 function pickTopMovies(amount) {
     const movies = pickRandomMovies(amount)
     
     console.log(movies)
-
+    
     movies.forEach( movie => createMovieCard(movie))
 }
