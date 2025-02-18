@@ -12,15 +12,11 @@ async function fetchAPI(api) {
         .then(response => response.json())
         .catch(error => console.log(error.message))
 
-/*         const response = await fetch(api);
-        const data = await response.json();
-        return data */
-
 }
 
-async function fetchTopMovies() {
+async function fetchTopMoviesAPI() {
     let movies = await fetchAPI("https://santosnr6.github.io/Data/favoritemovies.json");
     return movies;
 }
 
-export { fetchTopMovies };
+export { fetchTopMoviesAPI };
