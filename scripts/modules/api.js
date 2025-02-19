@@ -1,12 +1,5 @@
 import { oData } from "../data/data.js";
 
-
-/* export async function fetchTopMovies() {
-    const response = await fetch('https://santosnr6.github.io/Data/favoritemovies.json');
-    let movies = await response.json();
-    oData.topMovieList = movies;
-} */
-
 async function fetchAPI(api) {
     // Får titta till errormeddelandet lite noggrannare senare
     return fetch(api)
@@ -19,4 +12,9 @@ async function fetchTopMoviesAPI() {
     oData.movies = await fetchAPI("https://santosnr6.github.io/Data/favoritemovies.json");
 }
 
-export { fetchTopMoviesAPI };
+async function fetchOMDbFullMovieAPI(apiKey, imdbId) {
+    oData.fullInfoMovie = await fetchAPI(`http://www.omdbapi.com/?apikey=${apiKey}&plot=full&i=${imdbId}`)
+}
+
+
+export { fetchTopMoviesAPI, fetchOMDbFullMovieAPI };
