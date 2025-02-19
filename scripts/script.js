@@ -4,6 +4,7 @@ import { renderTrailers } from "./modules/caroussel.js";
 import { randomizeNumbers } from "./utils/utils.js";
 import { oData } from "./data/data.js";
 import { createMovieCard } from "./components/movieCard.js";
+import { runMoviePage } from "./components/moviePage.js";
 
 // Om index.html-sidan laddas körs detta
 if(window.location.pathname === '/' || window.location.pathname === '/index.html') {
@@ -30,11 +31,9 @@ if(window.location.pathname === '/' || window.location.pathname === '/index.html
             await fetchOMDbFullMovieAPI(apiKeyOMDb, imdbID)
             console.log(oData.fullInfoMovie);
             
-            
         } else {
-            console.error("The IMDb ID is missing...");
-            
-            
+            // Behöver flyttas upp till if-satsen
+            runMoviePage();
         }
     }
     
