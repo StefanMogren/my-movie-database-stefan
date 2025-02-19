@@ -152,6 +152,7 @@ body {
 }
 
 .movie-information__flex-container {
+    position: relative;
     display: flex;
     list-style-type: none;
     gap: 0.8rem;
@@ -170,5 +171,35 @@ body {
     border: 1px var(--primary-white) solid;
     border-radius: 50px;
     padding: 0.3rem 0.7rem;
+}
 
+.movie-information__favorite-bookmark {
+    position: absolute;
+    width: 40px;
+    margin: 0.2rem;
+    border: none;
+    background: rgb(255, 255, 255, 0.4);
+}
+
+.movie-information__favorite-btn {
+    width: 15rem;
+    padding: 1rem;
+    border: none;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: black;
+    background-color: rgb(245, 197, 24);
+}
+
+
+.movie-information__meta-list-item {
+    
+}
+.movie-information__meta-link {
+    color: rgb(87, 153, 239);
+    text-decoration: none;
+}
+.movie-information__meta-link:hover {
+    text-decoration: underline;
 }
