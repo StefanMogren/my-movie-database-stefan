@@ -1,5 +1,5 @@
 import { apiKeyOMDb } from "../apiKeys/apiKeyOMDb.js"
-import { fetchTopMoviesAPI } from "./modules/api.js";
+import { fetchTopMoviesAPI, fetchOMDbFullMovieAPI } from "./modules/api.js";
 import { renderTrailers } from "./modules/caroussel.js";
 import { randomizeNumbers } from "./utils/utils.js";
 import { oData } from "./data/data.js";
@@ -22,19 +22,22 @@ if(window.location.pathname === '/' || window.location.pathname === '/index.html
 // Om movie.html laddas körs detta
 } else if(window.location.pathname === '/movie.html') {
     console.log('movie.html');
-    window.onload = () => {
+    window.onload = async () => {
         const urlParams = new URLSearchParams(window.location.search);
         const imdbID = urlParams.get("imdbid")
         if(imdbID) {
             console.log(`The IMDb ID is ${imdbID}`);
+            await fetchOMDbFullMovieAPI(apiKeyOMDb, imdbID)
+            console.log(oData.fullInfoMovie);
+            
             
         } else {
-            console.log("The IMDb ID is missing...");
+            console.error("The IMDb ID is missing...");
+            
             
         }
     }
     
-
 // Om search.html laddas körs detta
 } else if(window.location.pathname === '/search.html') {
     console.log('search.html');
@@ -70,3 +73,4 @@ function pickTopMovies(amount) {
     
     movies.forEach( movie => createMovieCard(movie))
 }
+
