@@ -16,7 +16,9 @@
     box-sizing: border-box;
     padding: 0;
     margin: 0;
-    color: white;
+    font-family: sans-serif;
+    font-weight: lighter;
+    color: var(--primary-white);
 
 }
 
@@ -119,20 +121,54 @@ body {
 }
 
 .card-container__title {
-    color: white;
     font-size: 1rem;
 }
 
 /* --------------- Movie.html ---------------*/
+
+.movie-information {
+    margin: 1.5rem;
+}
+
+.movie-information__title {
+    font-family: sans-serif;
+    font-weight: lighter;
+    font-size: 2rem;
+}
+
+.movie-information__sub-title {
+    font-size: 1rem;
+    color: rgb(255, 255, 255, 0.7);
+}
+
 
 .movie-information__poster {
     width: 200px;
     aspect-ratio: 1/1.5;
 }
 
+.movie-information__plot {
+    line-height: 1.4rem;
+}
+
 .movie-information__flex-container {
     display: flex;
-    flex-wrap: wrap;
     list-style-type: none;
-    gap: 1rem;
+    gap: 0.8rem;
+    padding: 1rem 0;
+
+}
+.movie-information__flex-container--padding-0 {
+    padding: 0;
+}
+
+.movie-information__flex-container--border-top {
+    border-top: 1px rgb(255, 255, 255, 0.7) solid;
+}
+
+.movie-information__genre-list-item {
+    border: 1px var(--primary-white) solid;
+    border-radius: 50px;
+    padding: 0.3rem 0.7rem;
+
 }
