@@ -1,3 +1,4 @@
+import { checkFavoritesLocalStorage, setFavoritesLocalStorage } from "../modules/localStorage.js";
 
 
 function createPoster(movie, htmlElement, addPosterLink) {
@@ -5,9 +6,9 @@ function createPoster(movie, htmlElement, addPosterLink) {
     posterImgHTML.classList.add("card-container__poster");
     posterImgHTML.src = movie.Poster;
     
-
-
-    if(addPosterLink) {
+    
+    
+    if(addPosterLink === true) {
         const posterLinkHTML = document.createElement("a")
         posterLinkHTML.href =`./movie.html?imdbid=${movie.imdbID}`;
         posterLinkHTML.appendChild(posterImgHTML);
@@ -16,37 +17,45 @@ function createPoster(movie, htmlElement, addPosterLink) {
     } else {
         htmlElement.appendChild(posterImgHTML);
     }
-    createFavoriteBookmark(htmlElement);
+
+    createFavoriteBookmark(htmlElement, movie.imdbID);
 }
 
-function createFavoriteBookmark(htmlElement) {
+
+
+
+function createFavoriteBookmark(htmlElement, imdbID) {
     const favoriteButtonHTML = document.createElement("button");
     favoriteButtonHTML.classList.add("favorite-bookmark");
 
     const favoriteImgHTML = document.createElement("img");
-    favoriteImgHTML.src = "./res/icons/star.svg";
+    favoriteImgHTML.id = imdbID;
     favoriteImgHTML.alt = "Favorite bookmark icon";
+    
 
+    favoriteButtonHTML.addEventListener("click", () => {
+        setFavoritesLocalStorage(favoriteImgHTML, imdbID)
+    })
+
+
+    // Kontroll ifall filmens imdbID finns sparad som favoriter i localStorage
+    // En tom stjärna om nej
+    // En fylld stjärna om jag
+    checkFavoritesLocalStorage(favoriteImgHTML, imdbID);
+    
+    
     favoriteButtonHTML.appendChild(favoriteImgHTML);
-
+    
     htmlElement.appendChild(favoriteButtonHTML);
     // favoriteImgHTML.classList.add()
 }
 
 
+
+
+
+/* --------------- Huvudfunktionen --------------- */
 function createMovieCard(movie) {
-    
-    // Postern för filmen
-    
-    
-    
-    
-    
-    // Favoritknappen <<<saknas>>>
-    const favoriteImgHTML = document.createElement("icon");
-    favoriteImgHTML.classList.add("card-container__favorite-icon")
-    
-    
     // Filmtiteln
     const titleH3HTML = document.createElement("h3");
     titleH3HTML.classList.add("card-container__title");
