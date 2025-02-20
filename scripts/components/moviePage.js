@@ -1,5 +1,6 @@
 // import { oData } from "../data/data";
 import { createMovieTitles } from "../utils/domUtils.js";
+import { createPoster } from "./movieCard.js";
 
 function runMoviePage() {
     const fullMovie = {
@@ -49,15 +50,45 @@ function runMoviePage() {
     const movieInformationRef = document.getElementById("movieInformation");
     
     createMovieTitles(fullMovie, movieInformationRef);
+    
+    const posterPlotContainerHTML = document.createElement("section");
+    posterPlotContainerHTML.classList.add("movie-information__flex-container")
+    posterPlotContainerHTML.classList.add("movie-information__flex-container--position-relative")
+    
+    createPoster(fullMovie, posterPlotContainerHTML, false);
+    createPlot(fullMovie, posterPlotContainerHTML);
 
-    createPoster
+    movieInformationRef.appendChild(posterPlotContainerHTML);
 
+    const genreUlHTML = document.createElement("ul");
+    genreUlHTML.classList.add("movie-information__flex-container");
+
+    createGenres(fullMovie.Genre, genreUlHTML)
+
+    movieInformationRef.appendChild(genreUlHTML);
+}
+
+function createGenres(genres, ulHTML) {
+    const genresArray = genres.split(", ");
+
+    genresArray.forEach( genre => {
+        const listItemHTML = document.createElement("li");
+        listItemHTML.classList.add("movie-information__genre-list-item");
+        listItemHTML.textContent = genre;
+
+        ulHTML.appendChild(listItemHTML);
+    });
     
- 
-    
-    
-    
-    
+}
+
+
+function createPlot(movie, htmlContainer) {
+    const plotParagraphHTML = document.createElement("p");
+    plotParagraphHTML.classList.add("movie-information__plot");
+
+    plotParagraphHTML.textContent = movie.Plot;
+    htmlContainer.appendChild(plotParagraphHTML)
+
 }
 
 export { runMoviePage };
