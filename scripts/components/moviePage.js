@@ -50,6 +50,8 @@ function runMoviePage() {
     
     createMovieTitles(fullMovie, movieInformationRef);
 
+    createPoster
+
     
  
     
