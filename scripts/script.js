@@ -30,10 +30,11 @@ if(window.location.pathname === '/' || window.location.pathname === '/index.html
             console.log(`The IMDb ID is ${imdbID}`);
             await fetchOMDbFullMovieAPI(apiKeyOMDb, imdbID)
             console.log(oData.fullInfoMovie);
+            runMoviePage(oData.fullInfoMovie);
             
         } else {
+            console.error("No imdbID is present...");
             // Behöver flyttas upp till if-satsen
-            runMoviePage();
         }
     }
     
