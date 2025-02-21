@@ -1,5 +1,5 @@
 // import { oData } from "../data/data";
-import { createMovieTitles } from "../utils/domUtils.js";
+import { createMovieTitles, createListItem, createUnorderedList } from "../utils/domUtils.js";
 import { createPoster } from "./movieCard.js";
 
 function runMoviePage() {
@@ -57,90 +57,88 @@ function runMoviePage() {
     
     createPoster(fullMovie, posterPlotContainerHTML, false);
     createPlot(fullMovie, posterPlotContainerHTML);
-
+    
     movieInformationRef.appendChild(posterPlotContainerHTML);
-
+    
     movieInformationRef.appendChild(createGenres(fullMovie.Genre));
-
+    
     movieInformationRef.appendChild(createFavoriteButton());
-
+    
     movieInformationRef.appendChild(createScore(fullMovie.Ratings));
     
     movieInformationRef.appendChild(createMeta(fullMovie));
 }
 
 function createMeta(movie) {
-    const ulOuterHTML = document.createElement("ul");
-
+    const ulOuterHTML = createUnorderedList();
+    
     const metaPeopleObject = {
         Director: movie.Director,
         Actors: movie.Actors,
         Writer: movie.Writer
     }
+
     
-    // const metaPeopleArray = [movie.Director, movie.Actors, movie.Writer]
-    const metaDataArray = [movie.BoxOffice, movie.Awards]
     
     for (const [key, value] of Object.entries(metaPeopleObject)) {
         const metaParagraphHTML = document.createElement("p");
         metaParagraphHTML.innerText = `${key}: `
         
-        const listItemHTML = createOuterListItem();
+        const listItemHTML = createListItem("movie-information__list-flex movie-information__list-flex--padding-1-0 movie-information__list-flex--border-top")
+        
         listItemHTML.appendChild(metaParagraphHTML);
-
+        
+        const ulInnerHTML = createUnorderedList("movie-information__list-flex");
+        
+        
         const peoplesArray = value.split(", ");
-
-        const ulInnerHTML = document.createElement("ul");
-        ulInnerHTML.classList.add("movie-information__list-flex");
-
         peoplesArray.forEach( person => {
             const aLinkHTML = document.createElement("a");
             aLinkHTML.classList.add("movie-information__meta-link");
             aLinkHTML.textContent = person;
             // const person = 
             aLinkHTML.href = `https://www.google.se/search?q=${person.replaceAll(" ", "+")}`
-
-            const listItemInnerHTML = document.createElement("li");
+            
+            const listItemInnerHTML = createListItem();
             listItemInnerHTML.appendChild(aLinkHTML);
-
+            
             ulInnerHTML.appendChild(listItemInnerHTML);
         })
-
+        
         listItemHTML.appendChild(ulInnerHTML);
         ulOuterHTML.appendChild(listItemHTML);
     }
-
+    
+    const metaDataArray = {
+        Box_Office: movie.BoxOffice,
+        Awards: movie.Awards
+    }
+    
+    
+    
     return ulOuterHTML;
-
+    
 }
 
-function createOuterListItem() {
-    const listItemHTML = document.createElement("li");
-    listItemHTML.classList.add("movie-information__list-flex");
-    listItemHTML.classList.add("movie-information__list-flex--padding-1-0");
-    listItemHTML.classList.add("movie-information__list-flex--border-top");
-
-    return listItemHTML;
-}
 
 function createScore(ratings) {
     const ulHTML = document.createElement("ul");
     ulHTML.classList.add("movie-information__flex-container");
-
+    
     ratings.forEach( rating => {
         const listItemHTML = document.createElement("li");
         listItemHTML.textContent = `${rating.Source}: ${rating.Value}`;
         ulHTML.appendChild(listItemHTML);
     })
     return ulHTML;
-
+    
 }
 
 function createFavoriteButton() {
     const favoriteButtonHTML = document.createElement("button");
     favoriteButtonHTML.classList.add("movie-information__favorite-btn");
     favoriteButtonHTML.textContent = "+ Add to favorites";
-
+    
     return favoriteButtonHTML;
 }
 
@@ -148,12 +146,12 @@ function createGenres(genres) {
     const genreUlHTML = document.createElement("ul");
     genreUlHTML.classList.add("movie-information__flex-container");
     const genresArray = genres.split(", ");
-
+    
     genresArray.forEach( genre => {
         const listItemHTML = document.createElement("li");
         listItemHTML.classList.add("movie-information__genre-list-item");
         listItemHTML.textContent = genre;
-
+        
         genreUlHTML.appendChild(listItemHTML);
     });
     
@@ -164,10 +162,10 @@ function createGenres(genres) {
 function createPlot(movie, htmlContainer) {
     const plotParagraphHTML = document.createElement("p");
     plotParagraphHTML.classList.add("movie-information__plot");
-
+    
     plotParagraphHTML.textContent = movie.Plot;
     htmlContainer.appendChild(plotParagraphHTML)
-
+    
 }
 
 export { runMoviePage };

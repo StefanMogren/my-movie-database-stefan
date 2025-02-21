@@ -11,4 +11,16 @@ function createMovieTitles(movie, movieInformationRef) {
     movieInformationRef.appendChild(subTitleHTML)
 }
 
-export { createMovieTitles };
+function createListItem(classes) {
+    const listItemHTML = document.createElement("li");
+    listItemHTML.className = classes;
+    return listItemHTML;
+}
+
+function createUnorderedList(classes) {
+    const unorderedListHTML = document.createElement("ul");
+    unorderedListHTML.className = classes;
+    return unorderedListHTML;
+}
+
+export { createMovieTitles, createListItem, createUnorderedList };
