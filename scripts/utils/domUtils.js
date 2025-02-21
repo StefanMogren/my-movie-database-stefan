@@ -23,4 +23,10 @@ function createUnorderedList(classes) {
     return unorderedListHTML;
 }
 
-export { createMovieTitles, createListItem, createUnorderedList };
+function createAnchor(classes) {
+    const anchorHTML = document.createElement("a");
+    anchorHTML.className = classes;
+    return anchorHTML;
+}
+
+export { createMovieTitles, createListItem, createUnorderedList, createAnchor };

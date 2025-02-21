@@ -1,5 +1,5 @@
 // import { oData } from "../data/data";
-import { createMovieTitles, createListItem, createUnorderedList } from "../utils/domUtils.js";
+import { createMovieTitles, createListItem, createUnorderedList, createAnchor } from "../utils/domUtils.js";
 import { createPoster } from "./movieCard.js";
 
 function runMoviePage() {
@@ -71,52 +71,45 @@ function runMoviePage() {
 
 function createMeta(movie) {
     const ulOuterHTML = createUnorderedList();
-    
-    const metaPeopleObject = {
-        Director: movie.Director,
-        Actors: movie.Actors,
-        Writer: movie.Writer
-    }
+    const metaArray = [];
 
+    metaArray.push(createMetaLine("Director", movie.Director, true));
+    metaArray.push(createMetaLine("Actors", movie.Actors, true));
+    metaArray.push(createMetaLine("Writer", movie.Writer, true));
+    metaArray.push(createMetaLine("Box Office", movie.BoxOffice, false));
+    metaArray.push(createMetaLine("Awards", movie.Awards, false));
     
-    
-    for (const [key, value] of Object.entries(metaPeopleObject)) {
-        const metaParagraphHTML = document.createElement("p");
-        metaParagraphHTML.innerText = `${key}: `
-        
-        const listItemHTML = createListItem("movie-information__list-flex movie-information__list-flex--padding-1-0 movie-information__list-flex--border-top")
-        
-        listItemHTML.appendChild(metaParagraphHTML);
-        
-        const ulInnerHTML = createUnorderedList("movie-information__list-flex");
-        
-        
-        const peoplesArray = value.split(", ");
-        peoplesArray.forEach( person => {
-            const aLinkHTML = document.createElement("a");
-            aLinkHTML.classList.add("movie-information__meta-link");
-            aLinkHTML.textContent = person;
-            // const person = 
-            aLinkHTML.href = `https://www.google.se/search?q=${person.replaceAll(" ", "+")}`
-            
-            const listItemInnerHTML = createListItem();
-            listItemInnerHTML.appendChild(aLinkHTML);
-            
-            ulInnerHTML.appendChild(listItemInnerHTML);
-        })
-        
-        listItemHTML.appendChild(ulInnerHTML);
-        ulOuterHTML.appendChild(listItemHTML);
-    }
-    
-    const metaDataArray = {
-        Box_Office: movie.BoxOffice,
-        Awards: movie.Awards
-    }
-    
-    
-    
+    metaArray.forEach( meta => ulOuterHTML.appendChild(meta))
     return ulOuterHTML;
+}
+
+
+function createMetaLine(metaName, metaContent, addInnerList) {
+    const outerLiHTML = createListItem("movie-information__list-flex movie-information__list-flex--padding-1-0 movie-information__list-flex--border-top");
+    
+    if(addInnerList === true) {
+        outerLiHTML.textContent = `${metaName}:`;
+
+        const innerUlHTML = createUnorderedList("movie-information__list-flex");
+        
+        const peoplesArray = metaContent.split(", ")
+        peoplesArray.forEach( name => {
+
+            const aHTML = createAnchor("movie-information__meta-link");
+            aHTML.textContent = name;
+            aHTML.href = `https://www.google.se/search?q=${name.replaceAll(" ", "+")}`
+            
+            const innerLiHTML = createListItem("movie-information__meta-list-item");
+
+            innerLiHTML.appendChild(aHTML);
+            innerUlHTML.appendChild(innerLiHTML);
+            outerLiHTML.appendChild(innerUlHTML);
+        })
+
+    } else {
+        outerLiHTML.textContent = `${metaName}: ${metaContent}`;
+    }
+    return outerLiHTML;
     
 }
 
