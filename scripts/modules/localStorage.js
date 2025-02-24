@@ -1,5 +1,5 @@
 function checkFavoritesLocalStorage(starImgElem, movie) {
-    const favorites = JSON.parse(localStorage.getItem("userFavorites")) || [];
+    const favorites = getFavoritesLocalStorage();
     
     if(favorites.some( favorite => favorite.imdbID === movie.imdbID )) {
         starImgElem.src = "./res/icons/star-solid.svg";
@@ -10,7 +10,7 @@ function checkFavoritesLocalStorage(starImgElem, movie) {
 }
 
 function setFavoritesLocalStorage(starImgElem, movie) {
-    let favorites = JSON.parse(localStorage.getItem("userFavorites")) || [];
+    let favorites = getFavoritesLocalStorage();
 
     // Ta bort filmen från localStorage om den finns där
     if(favorites.some( favorite => favorite.imdbID === movie.imdbID )) {
@@ -28,4 +28,8 @@ function setFavoritesLocalStorage(starImgElem, movie) {
     localStorage.setItem("userFavorites", JSON.stringify(favorites))
 }
 
-export { checkFavoritesLocalStorage, setFavoritesLocalStorage }
+function getFavoritesLocalStorage() {
+    return JSON.parse(localStorage.getItem("userFavorites")) || [];
+}
+
+export { checkFavoritesLocalStorage, setFavoritesLocalStorage, getFavoritesLocalStorage }

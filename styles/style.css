@@ -87,7 +87,7 @@ body {
     cursor: pointer;
 }
 
-.popular-title {
+.hero-title {
     text-align: center;
 }
 
@@ -215,7 +215,7 @@ body {
 /* .movie-information__meta-list-item {
     
 } */
- 
+
 .movie-information__meta-link {
     color: rgb(87, 153, 239);
     text-decoration: none;

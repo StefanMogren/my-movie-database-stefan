@@ -3,6 +3,7 @@ import { fetchTopMoviesAPI, fetchOMDbFullMovieAPI } from "./modules/api.js";
 import { pickMovieTrailers, pickTopMovies } from "./utils/utils.js";
 import { oData } from "./data/data.js";
 import { runMoviePage } from "./components/moviePage.js";
+import { runFavoritesPage } from "./components/favoritesPage.js"
 
 // Om index.html-sidan laddas körs detta
 if(window.location.pathname === '/' || window.location.pathname === '/index.html') {
@@ -16,7 +17,7 @@ if(window.location.pathname === '/' || window.location.pathname === '/index.html
 // Om favorites.html laddas körs detta
 } else if(window.location.pathname === '/favorites.html') {
     console.log('favorites.html');
-    
+    runFavoritesPage();
     
 // Om movie.html laddas körs detta
 } else if(window.location.pathname === '/movie.html') {
