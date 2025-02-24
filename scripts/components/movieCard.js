@@ -1,57 +1,5 @@
 import { checkFavoritesLocalStorage, setFavoritesLocalStorage } from "../modules/localStorage.js";
 
-
-function createPoster(movie, htmlElement, addPosterLink) {
-    const posterImgHTML = document.createElement("img");
-    posterImgHTML.src = movie.Poster;
-    
-    if(addPosterLink === true) {
-        const posterLinkHTML = document.createElement("a")
-        posterLinkHTML.href =`./movie.html?imdbid=${movie.imdbID}`;
-        posterImgHTML.classList.add("card-container__poster");
-        posterLinkHTML.appendChild(posterImgHTML);
-        htmlElement.appendChild(posterLinkHTML);
-        
-    } else {
-        posterImgHTML.classList.add("movie-information__poster");
-        htmlElement.appendChild(posterImgHTML);
-        
-    }
-
-    createFavoriteBookmark(htmlElement, movie.imdbID);
-}
-
-
-
-
-function createFavoriteBookmark(htmlElement, imdbID) {
-    const favoriteButtonHTML = document.createElement("button");
-    favoriteButtonHTML.classList.add("favorite-bookmark");
-
-    const favoriteImgHTML = document.createElement("img");
-    favoriteImgHTML.id = imdbID;
-    favoriteImgHTML.alt = "Favorite bookmark icon";
-    
-
-    favoriteButtonHTML.addEventListener("click", () => {
-        setFavoritesLocalStorage(favoriteImgHTML, imdbID)
-    })
-
-
-    // Kontroll ifall filmens imdbID finns sparad som favoriter i localStorage
-    // En tom stjärna om nej
-    // En fylld stjärna om jag
-    checkFavoritesLocalStorage(favoriteImgHTML, imdbID);
-    
-    
-    favoriteButtonHTML.appendChild(favoriteImgHTML);
-    
-    htmlElement.appendChild(favoriteButtonHTML);
-    // favoriteImgHTML.classList.add()
-}
-
-
-
 /* --------------- Huvudfunktionen --------------- */
 function createMovieCard(movie) {
     // Filmtiteln
@@ -73,9 +21,11 @@ function createMovieCard(movie) {
     innerDivHTML.appendChild(titleH3HTML);
     innerDivHTML.appendChild(trailerALinkHTML);
     
+
     // Kortbehållaren
     const cardSectionHTML = document.createElement("section");
     cardSectionHTML.classList.add("card-container__card")
+    // createPoster skapar även bokmärket
     createPoster(movie, cardSectionHTML, true);
     
     cardSectionHTML.appendChild(innerDivHTML);
@@ -85,7 +35,51 @@ function createMovieCard(movie) {
 }
 
 
+function createPoster(movie, cardSectionHTML, addPosterLink) {
+    const posterImgHTML = document.createElement("img");
+    posterImgHTML.src = movie.Poster;
+    
+    if(addPosterLink === true) {
+        const posterLinkHTML = document.createElement("a")
+        posterLinkHTML.href =`./movie.html?imdbid=${movie.imdbID}`;
+        posterImgHTML.classList.add("card-container__poster");
+        posterLinkHTML.appendChild(posterImgHTML);
+        cardSectionHTML.appendChild(posterLinkHTML);
+        
+    } else {
+        posterImgHTML.classList.add("movie-information__poster");
+        cardSectionHTML.appendChild(posterImgHTML);
+        
+    }
+
+    createFavoriteBookmark(cardSectionHTML, movie);
+}
 
 
+function createFavoriteBookmark(cardSectionHTML, movie) {
+    const favoriteButtonHTML = document.createElement("button");
+    favoriteButtonHTML.classList.add("favorite-bookmark");
+
+    const favoriteImgHTML = document.createElement("img");
+    favoriteImgHTML.id = movie.imdbID;
+    favoriteImgHTML.alt = "Favorite bookmark icon";
+    
+
+    favoriteButtonHTML.addEventListener("click", () => {
+        setFavoritesLocalStorage(favoriteImgHTML, movie)
+    })
+
+
+    // Kontroll ifall filmens imdbID finns sparad som favoriter i localStorage
+    // En tom stjärna om nej
+    // En fylld stjärna om jag
+    checkFavoritesLocalStorage(favoriteImgHTML, movie);
+    
+    
+    favoriteButtonHTML.appendChild(favoriteImgHTML);
+    
+    cardSectionHTML.appendChild(favoriteButtonHTML);
+    // favoriteImgHTML.classList.add()
+}
 
 export { createMovieCard, createPoster };

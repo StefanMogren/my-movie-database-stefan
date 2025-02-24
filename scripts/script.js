@@ -71,6 +71,7 @@ function pickTopMovies(amount) {
     
     console.log(movies)
     
+    // Varje individuella film skickas in i createMovieCard
     movies.forEach( movie => createMovieCard(movie))
 }
 
