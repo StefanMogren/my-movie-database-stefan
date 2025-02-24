@@ -1,25 +1,35 @@
-function checkFavoritesLocalStorage(imgElem, imdbID) {
-    const favorites = JSON.parse(localStorage.getItem("userFavorites"));
+function checkFavoritesLocalStorage(starImgElem, movie) {
+    const favorites = getFavoritesLocalStorage();
     
-    if(favorites.includes(imdbID)) {
-        imgElem.src = "./res/icons/star-solid.svg";
+    if(favorites.some( favorite => favorite.imdbID === movie.imdbID )) {
+        starImgElem.src = "./res/icons/star-solid.svg";
         
     } else {
-        imgElem.src = "./res/icons/star.svg";
+        starImgElem.src = "./res/icons/star.svg";
     }
 }
 
-function setFavoritesLocalStorage(imgElem, imdbID) {
-    let favorites = JSON.parse(localStorage.getItem("userFavorites")) || [];
+function setFavoritesLocalStorage(starImgElem, movie) {
+    let favorites = getFavoritesLocalStorage();
 
-    if(favorites.includes(imdbID)) {
-        favorites = favorites.filter( favID => favID !== imdbID);
-        imgElem.src = "./res/icons/star.svg";
+    // Ta bort filmen från localStorage om den finns där
+    if(favorites.some( favorite => favorite.imdbID === movie.imdbID )) {
+        const index = favorites.findIndex(favorite => favorite.imdbID === movie.imdbID)
+
+        favorites.splice(index, 1);
+
+        starImgElem.src = "./res/icons/star.svg";
+
+    // Lägg till filmen i localStorage
     } else {
-        favorites.push(imdbID);
-        imgElem.src = "./res/icons/star-solid.svg";
+        favorites.push(movie);
+        starImgElem.src = "./res/icons/star-solid.svg";
     }
     localStorage.setItem("userFavorites", JSON.stringify(favorites))
 }
 
-export { checkFavoritesLocalStorage, setFavoritesLocalStorage }
+function getFavoritesLocalStorage() {
+    return JSON.parse(localStorage.getItem("userFavorites")) || [];
+}
+
+export { checkFavoritesLocalStorage, setFavoritesLocalStorage, getFavoritesLocalStorage }
