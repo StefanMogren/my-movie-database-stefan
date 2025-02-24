@@ -16,5 +16,9 @@ async function fetchOMDbFullMovieAPI(apiKey, imdbId) {
     oData.fullInfoMovie = await fetchAPI(`http://www.omdbapi.com/?apikey=${apiKey}&plot=full&i=${imdbId}`)
 }
 
+async function searchOMDbMoviesAPI(apiKey, movieSearch) {
+    oData.searchedMovies = await fetchAPI(`http://www.omdbapi.com/?apikey=${apiKey}&s=${movieSearch}*`)
+}
 
-export { fetchTopMoviesAPI, fetchOMDbFullMovieAPI };
+
+export { fetchTopMoviesAPI, fetchOMDbFullMovieAPI, searchOMDbMoviesAPI };
