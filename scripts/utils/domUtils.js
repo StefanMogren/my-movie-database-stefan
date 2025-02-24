@@ -3,12 +3,19 @@ function createMovieTitles(movie, movieInformationRef) {
     titleHTML.classList.add("movie-information__title");
     titleHTML.textContent = movie.Title;
     
-    const subTitleHTML = document.createElement("h2");
-    subTitleHTML.classList.add("movie-information__sub-title");
-    subTitleHTML.textContent = `${movie.Type} - ${movie.Rated} - ${movie.Runtime}`
+    const unorderedListHTML = createUnorderedList("movie-information__list-flex movie-information__list-flex--padding-1-0");
 
+    const infoArray = [movie.Type, movie.Year, movie.Rated, movie.Runtime];
+
+
+    infoArray.forEach( info => {
+        const listItemHTML = createListItem("movie-information__info-list-item");
+        listItemHTML.textContent = info
+        unorderedListHTML.appendChild(listItemHTML);
+    })
+    
     movieInformationRef.appendChild(titleHTML)
-    movieInformationRef.appendChild(subTitleHTML)
+    movieInformationRef.appendChild(unorderedListHTML)
 }
 
 function createListItem(classes) {

@@ -181,6 +181,15 @@ body {
     border-top: 1px rgb(255, 255, 255, 0.7) solid;
 }
 
+.movie-information__info-list-item {
+    list-style-type: disc;
+    margin-left: 1rem;
+}
+.movie-information__info-list-item:first-of-type {
+    list-style-type: none;
+    margin: 0;
+}
+
 .movie-information__genre-list-item {
     border: 1px var(--primary-white) solid;
     border-radius: 50px;
@@ -192,7 +201,6 @@ body {
     top: 0.2rem;
     left: 0.2rem;
     width: 40px;
-    /* margin: 0.2rem; */
     border: none;
     background: rgb(255, 255, 255, 0.4);
 }
@@ -201,7 +209,7 @@ body {
     background: rgb(255, 255, 255, 0.7);
 
 }
-
+/* 
 .movie-information__favorite-btn {
     width: 15rem;
     padding: 1rem;
@@ -212,7 +220,7 @@ body {
     color: black;
     background-color: rgb(245, 197, 24);
 }
-
+ */
 
 .movie-information__meta-list-item {
     

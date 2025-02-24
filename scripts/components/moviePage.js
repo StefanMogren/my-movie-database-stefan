@@ -16,15 +16,14 @@ function runMoviePage(fullMovie) {
     
     movieInformationRef.appendChild(posterPlotContainerHTML);
     movieInformationRef.appendChild(createGenres(fullMovie.Genre));
-    movieInformationRef.appendChild(createFavoriteButton());
-    movieInformationRef.appendChild(createScore(fullMovie.Ratings));
-    movieInformationRef.appendChild(createMeta(fullMovie));
+    // movieInformationRef.appendChild(createFavoriteButton());
+    movieInformationRef.appendChild(createMetadata(fullMovie));
 }
 
-function createMeta(movie) {
+function createMetadata(movie) {
     const ulOuterHTML = createUnorderedList();
-    const metaArray = [];
-
+    
+    ulOuterHTML.appendChild(createScore(movie.Ratings));
     ulOuterHTML.appendChild(createMetaLine("Director", movie.Director, true));
     ulOuterHTML.appendChild(createMetaLine("Actors", movie.Actors, true));
     ulOuterHTML.appendChild(createMetaLine("Writer", movie.Writer, true));
@@ -78,13 +77,14 @@ function createScore(ratings) {
     
 }
 
+/* 
 function createFavoriteButton() {
     const favoriteButtonHTML = document.createElement("button");
     favoriteButtonHTML.classList.add("movie-information__favorite-btn");
     favoriteButtonHTML.textContent = "+ Add to favorites";
     
     return favoriteButtonHTML;
-}
+} */
 
 function createGenres(genres) {
     const genreUlHTML = document.createElement("ul");
