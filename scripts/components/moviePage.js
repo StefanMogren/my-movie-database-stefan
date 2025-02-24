@@ -66,7 +66,7 @@ function createMetaLine(metaName, metaContent, addInnerList) {
 
 function createScore(ratings) {
     const ulHTML = document.createElement("ul");
-    ulHTML.classList.add("movie-information__flex-container");
+    ulHTML.className = "movie-information__flex-container movie-information__flex-container--padding-bottom-1";
     
     ratings.forEach( rating => {
         const listItemHTML = document.createElement("li");

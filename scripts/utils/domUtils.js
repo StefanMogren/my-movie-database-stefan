@@ -3,7 +3,7 @@ function createMovieTitles(movie, movieInformationRef) {
     titleHTML.classList.add("movie-information__title");
     titleHTML.textContent = movie.Title;
     
-    const unorderedListHTML = createUnorderedList("movie-information__list-flex movie-information__list-flex--padding-1-0");
+    const unorderedListHTML = createUnorderedList("movie-information__list-flex");
 
     const infoArray = [movie.Type, movie.Year, movie.Rated, movie.Runtime];
 
@@ -13,7 +13,7 @@ function createMovieTitles(movie, movieInformationRef) {
         listItemHTML.textContent = info
         unorderedListHTML.appendChild(listItemHTML);
     })
-    
+
     movieInformationRef.appendChild(titleHTML)
     movieInformationRef.appendChild(unorderedListHTML)
 }

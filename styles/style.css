@@ -128,6 +128,9 @@ body {
 /* --------------- Movie.html ---------------*/
 
 .movie-information {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
     margin: 1.5rem;
 }
 
@@ -136,12 +139,6 @@ body {
     font-weight: lighter;
     font-size: 2rem;
 }
-
-.movie-information__sub-title {
-    font-size: 1rem;
-    color: rgb(255, 255, 255, 0.7);
-}
-
 
 .movie-information__poster {
     width: 200px;
@@ -156,7 +153,9 @@ body {
     display: flex;
     gap: 0.8rem;
     list-style-type: none;
-    margin: 1rem 0;
+}
+.movie-information__flex-container--padding-bottom-1 {
+    padding-bottom: 1rem;
 }
 
 .movie-information__flex-container--position-relative {
@@ -184,6 +183,9 @@ body {
 .movie-information__info-list-item {
     list-style-type: disc;
     margin-left: 1rem;
+}
+.movie-information__info-list-item::first-letter {
+    text-transform: capitalize;
 }
 .movie-information__info-list-item:first-of-type {
     list-style-type: none;
