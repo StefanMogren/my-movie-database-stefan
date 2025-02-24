@@ -21,89 +21,31 @@
         
         <!-- Loggan -->
         <a href="index.html"><img class="header__logo" src="./res/logo.png" alt="logotype"/></a>
+        
+        <!-- Sökformuläret -->
+        <form class="header__form" id="searchForm">
+          <input
+          class="header__input"
+          id="searchInput"
+          type="text"
+          aria-label="Search"
+          />
+          <button class="header__form-btn" id="searchBtn">Search</button>
+        </form>
+        
+        <!-- Länken till sidan för favoriter -->
+        <a href="./favorites.html" class="header__fav-btn" id="favBtn">Favorites</a>
       </div>
     </header>
     
     <!--------------- Sektionen för filminformationen --------------->
     <!-- Movie Detailed Informatin -->
-    <main>
-      <section class="content-wrapper">
+    <main class="content-wrapper">
+      
+      <!-- Behållaren för filminformationen -->
+      <article class="movie-information" id="movieInformation">
         
-        <!-- Behållaren för filminformationen -->
-        <article class="movie-information" id="movieInformation">
-          
-        </article>
-        <article class="movie-information">
-          <h1 class="movie-information__title">Bubble</h1>
-          <h2 class="movie-information__sub-title">Movie - 2022 - TV-PG - 100 min</h2>
-          
-          <section class="movie-information__flex-container movie-information__flex-container--position-relative">
-            <img class="movie-information__poster" src="./res/icons/missing-poster.svg" alt="">
-            <button class="favorite-bookmark"><img src="./res/icons/star.svg" alt=""></button>
-            
-            <p class="movie-information__plot">In German-occupied France, young Jewish refugee Shosanna Dreyfus witnesses the slaughter of her family by Colonel Hans Landa. Narrowly escaping with her life, she plots her revenge several years later when German war hero Fredrick Zoller takes a rapid interest in her and arranges an illustrious movie premiere at the theater she now runs. With the promise of every major Nazi officer in attendance, the event catches the attention of the "Basterds", a group of Jewish-American guerrilla soldiers led by the ruthless Lt. Aldo Raine. As the relentless executioners advance and the conspiring young girl's plans are set in motion, their paths will cross for a fateful evening that will shake the very annals of history.</p>
-            
-          </section>
-          
-          <ul class="movie-information__flex-container" aria-details="genres">
-            <li class="movie-information__genre-list-item">Gangster</li>
-            <li class="movie-information__genre-list-item">Legal Drama</li>
-            <li class="movie-information__genre-list-item">Superhero</li>
-            <li class="movie-information__genre-list-item">Action</li>
-            <li class="movie-information__genre-list-item">Crime</li>
-            <li class="movie-information__genre-list-item">Drama</li>
-            <li class="movie-information__genre-list-item">Fantasy</li>
-            <li class="movie-information__genre-list-item">Sci-Fi</li>
-            <li class="movie-information__genre-list-item">Thriller</li>
-          </ul>
-          
-          <button class="movie-information__favorite-btn">+ Add to favorites</button>
-          
-          <section class="movie-information__flex-container" aria-details="ratings">
-            <p>IMDb * 6.4/10 8,5k</p>
-            <p>Rotten Tomatoes, 52%</p>
-            <p>Metacritic, 56/100</p>
-          </section>
-          
-          <section aria-details="metadata">
-            <ul>
-              <li class="movie-information__list-flex movie-information__list-flex--padding-1-0 movie-information__list-flex--border-top">
-                <p>Director: </p>
-                <ul class="movie-information__list-flex">
-                  <li class="movie-information__meta-list-item"><a  class="movie-information__meta-link" href="https://www.google.se/search?q=Tetsurô+Araki">Tetsurô Araki</a></li>
-                </ul>
-              </li>
-              
-              <li class="movie-information__list-flex movie-information__list-flex--padding-1-0 movie-information__list-flex--border-top">
-                <p>Actors: </p>
-                <ul class="movie-information__list-flex">
-                  <li>Jun Shison</li>
-                  <li>Riria</li>
-                  <li>Mamoru Miyano</li>
-                </ul>
-              </li>
-              
-              <li class="movie-information__list-flex movie-information__list-flex--padding-1-0 movie-information__list-flex--border-top">
-                <p>Writer: </p>
-                <ul class="movie-information__list-flex">
-                  <li>Gen Urobuchi</li>
-                  <li>Renji Ooki</li>
-                  <li>Naoko Satou</li>
-                </ul>
-              </li>
-              
-              <li class="movie-information__list-flex movie-information__list-flex--padding-1-0 movie-information__list-flex--border-top">
-                Box Office: $120,540,719
-              </li>
-              
-              <li class="movie-information__list-flex movie-information__list-flex--padding-1-0 movie-information__list-flex--border-top">
-                <p>Awards: 1 win & 3 nominations total</p>
-              </li>
-            </ul>
-          </section>
-
-        </article>
-      </section>
+      </article>
     </main>
     
   </body>

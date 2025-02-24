@@ -3,19 +3,19 @@ import { checkFavoritesLocalStorage, setFavoritesLocalStorage } from "../modules
 
 function createPoster(movie, htmlElement, addPosterLink) {
     const posterImgHTML = document.createElement("img");
-    posterImgHTML.classList.add("card-container__poster");
     posterImgHTML.src = movie.Poster;
-    
-    
     
     if(addPosterLink === true) {
         const posterLinkHTML = document.createElement("a")
         posterLinkHTML.href =`./movie.html?imdbid=${movie.imdbID}`;
+        posterImgHTML.classList.add("card-container__poster");
         posterLinkHTML.appendChild(posterImgHTML);
         htmlElement.appendChild(posterLinkHTML);
         
     } else {
+        posterImgHTML.classList.add("movie-information__poster");
         htmlElement.appendChild(posterImgHTML);
+        
     }
 
     createFavoriteBookmark(htmlElement, movie.imdbID);
@@ -52,8 +52,6 @@ function createFavoriteBookmark(htmlElement, imdbID) {
 
 
 
-
-
 /* --------------- Huvudfunktionen --------------- */
 function createMovieCard(movie) {
     // Filmtiteln
@@ -86,4 +84,8 @@ function createMovieCard(movie) {
     cardContainerREF.appendChild(cardSectionHTML);
 }
 
-export { createMovieCard };
+
+
+
+
+export { createMovieCard, createPoster };
