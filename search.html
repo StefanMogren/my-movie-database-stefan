@@ -22,21 +22,16 @@
       <a href="index.html"
       ><img class="header__logo" src="./res/logo.png" alt="logotype"
       /></a>
+      
+      <!-- Sökformuläret -->
+      <form id="searchForm" class="header__form" action="/search.html" method="get">
+        <input id="searchInput" class="header__input" type="text" name="searchMovie" aria-label="Search"/>
+        <button id="searchBtn" class="header__form-btn">Search</button>
+      </form>
+      
+      <!-- Länken till sidan för favoriter -->
+      <a href="./favorites.html" class="header__fav-btn" id="favBtn">Favorites</a>
     </div>
-    
-    <!-- Sökformuläret -->
-    <form class="header__form" id="searchForm">
-      <input
-      class="header__input"
-      id="searchInput"
-      type="text"
-      aria-label="Search"
-      />
-      <button class="header__form-btn" id="searchBtn">Search</button>
-    </form>
-    
-    <!-- Länken till sidan för favoriter -->
-    <a href="./favorites.html" class="header__fav-btn" id="favBtn">Favorites</a>
   </header>
   
   <!--------------- Sektionen för sökningen --------------->

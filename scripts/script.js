@@ -4,6 +4,7 @@ import { pickMovieTrailers, pickTopMovies } from "./utils/utils.js";
 import { oData } from "./data/data.js";
 import { runMoviePage } from "./components/moviePage.js";
 import { runFavoritesPage } from "./components/favoritesPage.js"
+import { runSearchPage } from "./components/searchPage.js";
 
 // Om index.html-sidan laddas körs detta
 if(window.location.pathname === '/' || window.location.pathname === '/index.html') {
@@ -25,6 +26,7 @@ if(window.location.pathname === '/' || window.location.pathname === '/index.html
     window.onload = async () => {
         const urlParams = new URLSearchParams(window.location.search);
         const imdbID = urlParams.get("imdbid")
+
         if(imdbID) {
             console.log(`The IMDb ID is ${imdbID}`);
             await fetchOMDbFullMovieAPI(apiKeyOMDb, imdbID)
@@ -33,13 +35,31 @@ if(window.location.pathname === '/' || window.location.pathname === '/index.html
             
         } else {
             console.error("No imdbID is present...");
-            // Behöver flyttas upp till if-satsen
         }
     }
     
 // Om search.html laddas körs detta
 } else if(window.location.pathname === '/search.html') {
     console.log('search.html');
-    
+    const urlParams = new URLSearchParams(window.location.search);
+
     
 }
+
+setSearchButton();
+
+function setSearchButton() {
+    const searchButtonRef = document.getElementById("searchBtn");
+    const searchFormRef = document.getElementById("searchForm")
+    const seachInputmRef = document.getElementById("searchInput")
+
+    searchFormRef.addEventListener("submit", event => {
+        // event.preventDefault();
+    })
+
+    searchButtonRef.addEventListener("click", () => {
+        
+    })
+};
+
+runSearchPage();
