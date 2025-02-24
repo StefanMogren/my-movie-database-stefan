@@ -211,22 +211,11 @@ body {
     background: rgb(255, 255, 255, 0.7);
 
 }
-/* 
-.movie-information__favorite-btn {
-    width: 15rem;
-    padding: 1rem;
-    border: none;
-    border-radius: 30px;
-    font-size: 1rem;
-    font-weight: bold;
-    color: black;
-    background-color: rgb(245, 197, 24);
-}
- */
 
-.movie-information__meta-list-item {
+/* .movie-information__meta-list-item {
     
-}
+} */
+ 
 .movie-information__meta-link {
     color: rgb(87, 153, 239);
     text-decoration: none;
