@@ -115,6 +115,23 @@ body {
     border-top-right-radius: 15px;
 }
 
+.card-container__trailer-link {
+    width: fit-content;
+    display: flex;
+    gap: 0.5rem;
+    padding: 0.5rem 0.8rem;
+    border-radius: 25px;
+    
+}
+
+.card-container__trailer-link:hover {
+    background-color: rgb(46, 46, 46);
+}
+
+.card-container__play-icon {
+    width: 0.8rem;
+}
+
 .card-container__inner-container {
     padding: 0.5rem;
     display: flex;
