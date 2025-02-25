@@ -113,19 +113,28 @@ body {
 .card-container__poster {
     width: 100%;
     aspect-ratio: 1 / 1.5;
+    transition: filter 0.3s;
     border-top-right-radius: 15px;
+}
+
+.card-container__poster:hover {
+    transition: filter 0.3s;
+    filter: brightness(90%);
 }
 
 .card-container__trailer-link {
     width: fit-content;
+    padding: 0.5rem 0.8rem;
     display: flex;
     gap: 0.5rem;
-    padding: 0.5rem 0.8rem;
     border-radius: 25px;
+    text-decoration: none;
+    transition: background-color 0.3s;
     
 }
 
 .card-container__trailer-link:hover {
+    transition: background-color 0.3s;
     background-color: rgb(46, 46, 46);
 }
 
@@ -229,10 +238,14 @@ body {
     left: 0.2rem;
     width: 40px;
     border: none;
+    transition: background-color 0.35s;
+
     background: rgb(255, 255, 255, 0.4);
 }
 
 .favorite-bookmark:hover {
+    transition: background-color 0.35s;
+    cursor: pointer;
     background: rgb(255, 255, 255, 0.7);
 
 }
