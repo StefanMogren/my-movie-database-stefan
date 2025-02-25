@@ -46,6 +46,4 @@ function pickTopMovies(amount) {
     movies.forEach( movie => createMovieCard(movie))
 }
 
-
-
 export { randomizeNumbers, pickMovieTrailers, pickRandomMovies, pickTopMovies };

@@ -11,9 +11,17 @@ function createMovieCard(movie) {
     // Trailerlänken
     const trailerALinkHTML = document.createElement("a");
     trailerALinkHTML.classList.add("card-container__trailer-link")
-    trailerALinkHTML.textContent = "Trailer";
     trailerALinkHTML.href = movie.Trailer_link;
     
+    
+    
+    const playIconHTML = document.createElement("img");
+    playIconHTML.src = "../res/icons/play-white.svg";
+    playIconHTML.classList.add("card-container__play-icon");
+    playIconHTML.alt = "Play trailer icon"
+    
+    trailerALinkHTML.appendChild(playIconHTML);
+    trailerALinkHTML.innerHTML += "Trailer";
     
     // Titeln och trailern läggs in i en div-container
     const innerDivHTML = document.createElement("div");
@@ -21,7 +29,7 @@ function createMovieCard(movie) {
     innerDivHTML.appendChild(titleH3HTML);
     innerDivHTML.appendChild(trailerALinkHTML);
     
-
+    
     // Kortbehållaren
     const cardSectionHTML = document.createElement("section");
     cardSectionHTML.classList.add("card-container__card")
@@ -37,7 +45,17 @@ function createMovieCard(movie) {
 
 function createPoster(movie, cardSectionHTML, addPosterLink) {
     const posterImgHTML = document.createElement("img");
-    posterImgHTML.src = movie.Poster || "../res/icons/missing-poster.svg";
+    if(movie.Poster === "N/A" || !movie.Poster) {
+    posterImgHTML.src = "../res/icons/missing-poster.svg";
+    
+    } else {
+        posterImgHTML.src = movie.Poster;
+    } 
+    
+    posterImgHTML.onerror = () => {
+        posterImgHTML.src = "../res/icons/missing-poster.svg"
+    }
+    
     posterImgHTML.alt = `Movie poster of ${movie.Title}`;
     
     if(addPosterLink === true) {
@@ -52,7 +70,7 @@ function createPoster(movie, cardSectionHTML, addPosterLink) {
         cardSectionHTML.appendChild(posterImgHTML);
         
     }
-
+    
     createFavoriteBookmark(cardSectionHTML, movie);
 }
 
@@ -60,17 +78,17 @@ function createPoster(movie, cardSectionHTML, addPosterLink) {
 function createFavoriteBookmark(cardSectionHTML, movie) {
     const favoriteButtonHTML = document.createElement("button");
     favoriteButtonHTML.classList.add("favorite-bookmark");
-
+    
     const favoriteImgHTML = document.createElement("img");
     favoriteImgHTML.id = movie.imdbID;
     favoriteImgHTML.alt = "Favorite bookmark icon";
     
-
+    
     favoriteButtonHTML.addEventListener("click", () => {
         setFavoritesLocalStorage(favoriteImgHTML, movie)
     })
-
-
+    
+    
     // Kontroll ifall filmens imdbID finns sparad som favoriter i localStorage
     // En tom stjärna om nej
     // En fylld stjärna om jag

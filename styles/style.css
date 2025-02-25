@@ -96,15 +96,16 @@ body {
 .card-container {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     gap: 1rem;
     margin: 2rem;
 }
 
 .card-container__card {
     position: relative;
-    flex-basis: 150px;
+    flex-basis: 200px;
     flex-grow: 1;
-    max-width: 200px;
+    max-width: 250px;
     background-color: rgb(30, 30, 30);
     border-radius: 0 15px 15px 15px;
 }
@@ -112,7 +113,34 @@ body {
 .card-container__poster {
     width: 100%;
     aspect-ratio: 1 / 1.5;
+    transition: filter 0.3s;
     border-top-right-radius: 15px;
+}
+
+.card-container__poster:hover {
+    transition: filter 0.3s;
+    filter: brightness(90%);
+}
+
+.card-container__trailer-link {
+    width: fit-content;
+    padding: 0.5rem 0.8rem;
+    display: flex;
+    gap: 0.5rem;
+    align-self: center;
+    border-radius: 25px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+    
+}
+
+.card-container__trailer-link:hover {
+    transition: background-color 0.3s;
+    background-color: rgb(46, 46, 46);
+}
+
+.card-container__play-icon {
+    width: 0.8rem;
 }
 
 .card-container__inner-container {
@@ -120,11 +148,16 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 5rem;
+    height: 6rem;
 }
 
 .card-container__title {
     font-size: 1rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 /* --------------- Movie.html ---------------*/
@@ -206,10 +239,13 @@ body {
     left: 0.2rem;
     width: 40px;
     border: none;
+    transition: background-color 0.35s;
     background: rgb(255, 255, 255, 0.4);
 }
 
 .favorite-bookmark:hover {
+    transition: background-color 0.35s;
+    cursor: pointer;
     background: rgb(255, 255, 255, 0.7);
 
 }
