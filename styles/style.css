@@ -127,6 +127,7 @@ body {
     padding: 0.5rem 0.8rem;
     display: flex;
     gap: 0.5rem;
+    align-self: center;
     border-radius: 25px;
     text-decoration: none;
     transition: background-color 0.3s;
@@ -239,7 +240,6 @@ body {
     width: 40px;
     border: none;
     transition: background-color 0.35s;
-
     background: rgb(255, 255, 255, 0.4);
 }
 

@@ -17,7 +17,8 @@ function createMovieCard(movie) {
     
     const playIconHTML = document.createElement("img");
     playIconHTML.src = "../res/icons/play-white.svg";
-    playIconHTML.className = "card-container__play-icon";
+    playIconHTML.classList.add("card-container__play-icon");
+    playIconHTML.alt = "Play trailer icon"
     
     trailerALinkHTML.appendChild(playIconHTML);
     trailerALinkHTML.innerHTML += "Trailer";
