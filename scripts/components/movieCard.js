@@ -37,7 +37,8 @@ function createMovieCard(movie) {
 
 function createPoster(movie, cardSectionHTML, addPosterLink) {
     const posterImgHTML = document.createElement("img");
-    posterImgHTML.src = movie.Poster;
+    posterImgHTML.src = movie.Poster || "../res/icons/missing-poster.svg";
+    posterImgHTML.alt = `Movie poster of ${movie.Title}`;
     
     if(addPosterLink === true) {
         const posterLinkHTML = document.createElement("a")
