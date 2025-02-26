@@ -182,6 +182,7 @@ body {
 .movie-information__poster {
     width: 200px;
     aspect-ratio: 1/1.5;
+    max-height: 300px;
 }
 
 .movie-information__plot {
@@ -270,11 +271,17 @@ body {
     .header {
         padding: 1rem;
     }
+
     .card-container { 
         margin: 1rem;
     }
+
     .card-container__card {
         flex-basis: 150px;
+    }
+
+    .movie-information {
+        margin: 1rem;
     }
 }
 
@@ -298,5 +305,14 @@ body {
     }
 }
 @media screen and (max-width: 550px) {
+    .movie-information__flex-container {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
 
+    .movie-information__poster {
+    }
+    .movie-information__plot {
+        
+    }
 }
