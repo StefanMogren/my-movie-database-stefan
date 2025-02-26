@@ -40,6 +40,8 @@ body {
     display: none;
 }
 
+/* --------------- .header ---------------*/
+
 .header {
     background-color: var(--header-grey);
     width: 100%;
@@ -92,6 +94,8 @@ body {
 .hero-title {
     text-align: center;
 }
+
+/* --------------- .card-container ---------------*/
 
 .card-container {
     display: flex;
@@ -160,7 +164,7 @@ body {
     overflow: hidden;
 }
 
-/* --------------- Movie.html ---------------*/
+/* --------------- .movie-information ---------------*/
 
 .movie-information {
     display: flex;
@@ -260,4 +264,36 @@ body {
 }
 .movie-information__meta-link:hover {
     text-decoration: underline;
+}
+
+@media screen and (max-width: 750px) {
+    .card-container { 
+        margin: 1rem;
+    }
+    .card-container__card {
+        flex-basis: 150px;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .header__flex {
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .header__form {
+        flex: 0 0 100%;
+        order: 3;
+    }
+
+    .header__input {
+        width: 70%;
+    }
+
+    .header__fav-btn {
+        order: 2;
+    }
+}
+@media screen and (max-width: 550px) {
+
 }
