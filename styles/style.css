@@ -267,6 +267,9 @@ body {
 }
 
 @media screen and (max-width: 750px) {
+    .header {
+        padding: 1rem;
+    }
     .card-container { 
         margin: 1rem;
     }
