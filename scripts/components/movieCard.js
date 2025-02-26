@@ -11,7 +11,7 @@ function createMovieCard(movie) {
     // Trailerlänken
     const trailerALinkHTML = document.createElement("a");
     trailerALinkHTML.classList.add("card-container__trailer-link")
-    trailerALinkHTML.href = movie.Trailer_link;
+    trailerALinkHTML.href = movie.Trailer_link || `https://www.youtube.com/results?search_query=${movie.Title.replaceAll(" ", "+")}+trailer`;
     
     
     
