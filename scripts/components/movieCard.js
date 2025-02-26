@@ -7,13 +7,10 @@ function createMovieCard(movie) {
     titleH3HTML.classList.add("card-container__title");
     titleH3HTML.textContent = movie.Title;
     
-    
     // Trailerlänken
     const trailerALinkHTML = document.createElement("a");
     trailerALinkHTML.classList.add("card-container__trailer-link")
-    trailerALinkHTML.href = movie.Trailer_link;
-    
-    
+    trailerALinkHTML.href = movie.Trailer_link || `https://www.youtube.com/results?search_query=${movie.Title.replaceAll(" ", "+")}+trailer`;
     
     const playIconHTML = document.createElement("img");
     playIconHTML.src = "../res/icons/play-white.svg";
@@ -89,16 +86,10 @@ function createFavoriteBookmark(cardSectionHTML, movie) {
     })
     
     
-    // Kontroll ifall filmens imdbID finns sparad som favoriter i localStorage
-    // En tom stjärna om nej
-    // En fylld stjärna om jag
     checkFavoritesLocalStorage(favoriteImgHTML, movie);
     
-    
     favoriteButtonHTML.appendChild(favoriteImgHTML);
-    
     cardSectionHTML.appendChild(favoriteButtonHTML);
-    // favoriteImgHTML.classList.add()
 }
 
 export { createMovieCard, createPoster };
