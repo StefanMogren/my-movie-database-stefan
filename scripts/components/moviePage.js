@@ -104,13 +104,17 @@ function createGenres(genres) {
 
 
 function createPlot(movie, htmlContainer) {
-    const plotContainerHTML = document.createElement("div");
     const plotParagraphHTML = document.createElement("p");
     plotParagraphHTML.classList.add("movie-information__plot");
-    
     plotParagraphHTML.textContent = movie.Plot;
-    plotContainerHTML.appendChild(plotParagraphHTML);
-    htmlContainer.appendChild(plotContainerHTML);
+
+    plotParagraphHTML.addEventListener("click", () => {
+        plotParagraphHTML.classList.toggle("movie-information__plot--display-block")
+    })
+
+    const containerHTML = document.createElement("div");
+    containerHTML.appendChild(plotParagraphHTML);
+    htmlContainer.appendChild(containerHTML);
     
 }
 

@@ -193,6 +193,10 @@ body {
     overflow: hidden;
 }
 
+.movie-information__plot--display-block {
+    display: block;
+}
+
 .movie-information__flex-container {
     display: flex;
     gap: 0.8rem;
@@ -312,5 +316,9 @@ body {
     .movie-information__flex-container {
         flex-wrap: wrap;
         justify-content: center;
+    }
+
+    .movie-information__plot {
+        -webkit-line-clamp: 3;
     }
 }
