@@ -11,12 +11,11 @@ async function fetchAPI(api) {
 
             // Om OMDb API:ets egna interna kontroll är falsk
             if(data.Response === "False") {
-                // Om standardresponsen från OMDb API visar falsk positiv
-                const error = new Error(response.status === 200 ? `False ${response.status}` : response.status);
+                // Lagrar OMDbs egna felmeddelande inuti oData
+                oData.omdbMessage = data.Error;
                 
-                // Lagrar OMDbs egna felmeddelande inuti error-objektet
-                error.omdbMessage = data.Error;
-                throw error;
+                // Om standardresponsen från OMDb API visar falsk positiv
+                throw new Error(response.status === 200 ? `False ${response.status}` : response.status);
                 
             } else {
                 return data;
@@ -37,7 +36,7 @@ async function fetchAPI(api) {
             console.error(`API fetch for ${api} failed! Status: ${error.message}`)
             
             // Detta kommer visa OMDb API:ets egna interna errormeddelande
-            console.error(error.omdbMessage);
+            console.error(oData.omdbMessage);
             
         } else {
             console.error(`API fetch for ${api} failed! Status: ${error.message}`)
@@ -53,8 +52,8 @@ async function fetchOMDbFullMovieAPI(apiKey, imdbId) {
     oData.fullInfoMovie = await fetchAPI(`http://www.omdbapi.com/?apikey=${apiKey}&plot=full&i=${imdbId}`)
 }
 
-async function searchOMDbMoviesAPI(apiKey, movieSearch) {
-    oData.searchedMovies = await fetchAPI(`http://www.omdbapi.com/?apikey=${apiKey}&s=${movieSearch}*`)
+async function searchOMDbMoviesAPI(apiKey, searchInput) {
+    oData.searchedMovies = await fetchAPI(`http://www.omdbapi.com/?apikey=${apiKey}&s=${searchInput}*`)
 }
 
 

@@ -43,10 +43,10 @@ if(window.location.pathname === '/' || window.location.pathname === '/index.html
     window.onload = async () => {
         console.log('search.html');
         const urlParams = new URLSearchParams(window.location.search);
-        const searchMovie = urlParams.get("searchMovie")
+        oData.searchInput = urlParams.get("searchMovie")
 
-        if(searchMovie) {
-            await searchOMDbMoviesAPI(apiKeyOMDb, searchMovie)
+        if(oData.searchInput) {
+            await searchOMDbMoviesAPI(apiKeyOMDb, oData.searchInput)
             runSearchPage();
         } else {
             console.error("No search input is present...");
