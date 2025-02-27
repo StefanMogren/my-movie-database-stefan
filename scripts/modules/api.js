@@ -5,24 +5,19 @@ async function fetchAPI(api) {
     try {
         const response = await fetch(api);
         
-        // Om standardresponsen från OMDb API är falsk 
-        if(!response.ok && api.includes("omdbapi.com")) {
-            const error = new Error(response.status);
-            // Inkludera även .json()-responsen i error-objektet
-            error.details = await response.json();
-            throw error;
-            
-            // Om standardresponsen från OMDb API okej
-        } else if(response.ok && api.includes("omdbapi.com")) {
+        // Kontroll specifik för OMDb API 
+        if(api.includes("omdbapi.com")) {
             const data = await response.json();
-            
-            // Den andra kontrollen om OMDb API:ets egna interna kontroll är falsk
-            if(data.Response === "False") {
-                const error = new Error("False positive");
-                // Inkludera även .json()-responsen i error-objektet
-                error.details = data;                
-                throw error;
 
+            // Om OMDb API:ets egna interna kontroll är falsk
+            if(data.Response === "False") {
+                // Om standardresponsen från OMDb API visar falsk positiv
+                const error = new Error(response.status === 200 ? `False ${response.status}` : response.status);
+                
+                // Lagrar OMDbs egna felmeddelande inuti error-objektet
+                error.omdbMessage = data.Error;
+                throw error;
+                
             } else {
                 return data;
             }
@@ -40,9 +35,9 @@ async function fetchAPI(api) {
         // Om OMDb API
         if(api.includes("omdbapi.com")) {
             console.error(`API fetch for ${api} failed! Status: ${error.message}`)
-
+            
             // Detta kommer visa OMDb API:ets egna interna errormeddelande
-            console.error(error.details.Error);
+            console.error(error.omdbMessage);
             
         } else {
             console.error(`API fetch for ${api} failed! Status: ${error.message}`)
