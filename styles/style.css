@@ -187,6 +187,14 @@ body {
 
 .movie-information__plot {
     line-height: 1.4rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 13;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.movie-information__plot--display-block {
+    display: block;
 }
 
 .movie-information__flex-container {
@@ -308,5 +316,9 @@ body {
     .movie-information__flex-container {
         flex-wrap: wrap;
         justify-content: center;
+    }
+
+    .movie-information__plot {
+        -webkit-line-clamp: 3;
     }
 }
