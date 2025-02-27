@@ -1,47 +1,53 @@
 import { oData } from "../data/data.js";
 
 async function fetchAPI(api) {
-    // Får titta till errormeddelandet lite noggrannare senare
-    
+    // Då OMDb API:et inkluderar ett extra internt felmeddelande samt att den även kan ge ett falskt positiv så behöver dessa två fall inkluderas.
     try {
         const response = await fetch(api);
         
-        if(!response.ok) {
+        // Om standardresponsen från OMDb API är falsk 
+        if(!response.ok && api.includes("omdbapi.com")) {
             const error = new Error(response.status);
-            error.details = response;
+            // Inkludera även .json()-responsen i error-objektet
+            error.details = await response.json();
             throw error;
             
+            // Om standardresponsen från OMDb API okej
+        } else if(response.ok && api.includes("omdbapi.com")) {
+            const data = await response.json();
+            
+            // Den andra kontrollen om OMDb API:ets egna interna kontroll är falsk
+            if(data.Response === "False") {
+                const error = new Error("False positive");
+                // Inkludera även .json()-responsen i error-objektet
+                error.details = data;                
+                throw error;
+
+            } else {
+                return data;
+            }
+            
+            // Om standardresponsen från API allmänt sett är falsk
+        } else if(!response.ok) {
+            throw new Error(response.status);
+            
+            // Om standardresponsen från API allmänt sett är okej
         } else {
             return await response.json();
         }
         
     } catch (error) {
-        
-        if(error.details.url.includes("santosnr6")) {
+        // Om OMDb API
+        if(api.includes("omdbapi.com")) {
             console.error(`API fetch for ${api} failed! Status: ${error.message}`)
+
+            // Detta kommer visa OMDb API:ets egna interna errormeddelande
+            console.error(error.details.Error);
             
         } else {
-            let data = await error.details.json();
             console.error(`API fetch for ${api} failed! Status: ${error.message}`)
-            console.error(data.Error);
-        }
-        
-        // if(error.details.)
-        // let data = await response.json()
-        
-        // console.error(`API fetch error: Status: ${error[0].message}`)
-        // console.error(`${error.message} Status: ${error.details.status}`);
-        // console.error(error.details.jsonResponse.Error || "No additional info received.");
-        
-        
-        // console.error(`The API that was trying to be fetched: ${api}`)
+        } 
     }
-    
-    /* return fetch(api)
-    .then(response => response.json())
-    .catch(error => console.error(`API fetch for ${api} failed! Status: ${error.message}`)) */
-    
-    
 }
 
 async function fetchTopMoviesAPI() {
