@@ -52,4 +52,10 @@ function createAnchor(classes) {
     return anchorHTML;
 };
 
-export { createH1, createH3, createParagraph, createImg, createDiv, createSection, createListItem, createUnorderedList, createAnchor };
+function createButton(classes) {
+    const buttonHTML = document.createElement("button");
+    buttonHTML.className = classes;
+    return buttonHTML;
+};
+
+export { createH1, createH3, createParagraph, createImg, createDiv, createSection, createListItem, createUnorderedList, createAnchor, createButton };
