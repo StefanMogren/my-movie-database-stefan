@@ -26,10 +26,10 @@ function createMetadata(movie, movieInformationRef) {
     movieInformationRef.appendChild(ulOuterHTML);
 }
 
-function createMetaLine(metaName, metaContent, addInnerList) {
+function createMetaLine(metaName, metaContent, separateMetaContent) {
     const outerLiHTML = createListItem("movie-information__list-flex movie-information__list-flex--padding-1-0 movie-information__list-flex--border-top");
     
-    if(addInnerList === true) {
+    if(separateMetaContent === true) {
         outerLiHTML.textContent = `${metaName}:`;
         const innerUlHTML = createUnorderedList("movie-information__list-flex");
         
@@ -58,8 +58,7 @@ function createMetaLine(metaName, metaContent, addInnerList) {
 }
 
 function createScore(ratings) {
-    const ulHTML = document.createElement("ul");
-    ulHTML.className = "movie-information__flex-container movie-information__flex-container--padding-bottom-1";
+    const ulHTML = createUnorderedList("movie-information__flex-container movie-information__flex-container--padding-bottom-1");
     
     ratings.forEach( rating => {
         const listItemHTML = document.createElement("li");
