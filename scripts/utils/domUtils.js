@@ -34,6 +34,13 @@ function createDiv(classes) {
     return divHTML;
 };
 
+function createImg(classes, href) {
+    const imgHTML = document.createElement("img");
+    imgHTML.className = classes;
+    imgHTML.href = href;
+    return imgHTML;
+}
+
 function createUnorderedList(classes) {
     const unorderedListHTML = document.createElement("ul");
     unorderedListHTML.className = classes;
@@ -46,4 +53,4 @@ function createAnchor(classes) {
     return anchorHTML;
 };
 
-export { createH1, createH3, createParagraph, createDiv, createSection, createListItem, createUnorderedList, createAnchor };
+export { createH1, createH3, createParagraph, createImg, createDiv, createSection, createListItem, createUnorderedList, createAnchor };

@@ -1,5 +1,5 @@
 import { checkFavoritesLocalStorage, setFavoritesLocalStorage } from "../modules/localStorage.js";
-import { createDiv, createH3 } from "../utils/domUtils.js";
+import { createDiv, createH3, createAnchor } from "../utils/domUtils.js";
 
 /* --------------- Huvudfunktionen --------------- */
 function createMovieCard(movie) {
@@ -11,10 +11,10 @@ function createMovieCard(movie) {
 
     
     // Trailerlänken
-    const trailerALinkHTML = document.createElement("a");
-    trailerALinkHTML.classList.add("card-container__trailer-link")
+    const trailerALinkHTML = createAnchor("card-container__trailer-link")
     trailerALinkHTML.href = movie.Trailer_link || `https://www.youtube.com/results?search_query=${movie.Title.replaceAll(" ", "+")}+trailer`;
     
+
     const playIconHTML = document.createElement("img");
     playIconHTML.src = "../res/icons/play-white.svg";
     playIconHTML.classList.add("card-container__play-icon");
