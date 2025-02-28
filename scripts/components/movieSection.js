@@ -4,7 +4,7 @@ import { createPoster } from "./movieCard.js";
 function createMovieSection(fullMovie) {
     const movieInformationRef = document.getElementById("movieInformation");
     const posterPlotContainerHTML = createSection("movie-information__flex-container movie-information__flex-container--position-relative");
-
+    
     createMovieTitles(fullMovie, movieInformationRef);
     movieInformationRef.appendChild(posterPlotContainerHTML);
     createPoster(fullMovie, posterPlotContainerHTML, false);
@@ -31,27 +31,30 @@ function createMetaLine(metaName, metaContent, addInnerList) {
     
     if(addInnerList === true) {
         outerLiHTML.textContent = `${metaName}:`;
-
         const innerUlHTML = createUnorderedList("movie-information__list-flex");
         
         const peoplesArray = metaContent.split(", ")
         peoplesArray.forEach( name => {
-            const aHTML = createAnchor("movie-information__meta-link");
-            aHTML.textContent = name;
-            aHTML.href = `https://www.google.se/search?q=${name.replaceAll(" ", "+")}`
-            
             const innerLiHTML = createListItem("movie-information__meta-list-item");
+            
+            if(name === "N/A") {
+                innerLiHTML.textContent = name;
 
-            innerLiHTML.appendChild(aHTML);
+            } else {
+                const aHTML = createAnchor("movie-information__meta-link");
+                aHTML.textContent = name;
+                aHTML.href = `https://www.google.se/search?q=${name.replaceAll(" ", "+")}`;
+                innerLiHTML.appendChild(aHTML);
+            }
+            
             innerUlHTML.appendChild(innerLiHTML);
             outerLiHTML.appendChild(innerUlHTML);
         })
-
+        
     } else {
         outerLiHTML.textContent = `${metaName}: ${metaContent}`;
     }
     return outerLiHTML;
-    
 }
 
 function createScore(ratings) {
@@ -87,11 +90,11 @@ function createPlot(movie, htmlContainer) {
     const plotParagraphHTML = document.createElement("p");
     plotParagraphHTML.classList.add("movie-information__plot");
     plotParagraphHTML.textContent = movie.Plot;
-
+    
     plotParagraphHTML.addEventListener("click", () => {
         plotParagraphHTML.classList.toggle("movie-information__plot--display-block")
     })
-
+    
     const containerHTML = document.createElement("div");
     containerHTML.appendChild(plotParagraphHTML);
     htmlContainer.appendChild(containerHTML);
