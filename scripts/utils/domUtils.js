@@ -1,6 +1,5 @@
 function createMovieTitles(movie, movieInformationRef) {
-    const titleHTML = document.createElement("h1");
-    titleHTML.classList.add("movie-information__title");
+    const titleHTML = createH1("movie-information__title");
     titleHTML.textContent = movie.Title;
     
     const unorderedListHTML = createUnorderedList("movie-information__list-flex");
@@ -16,6 +15,12 @@ function createMovieTitles(movie, movieInformationRef) {
 
     movieInformationRef.appendChild(titleHTML)
     movieInformationRef.appendChild(unorderedListHTML)
+}
+
+function createH1(classes) {
+    const h1HTML = document.createElement("h1");
+    h1HTML.className = classes;
+    return h1HTML;
 }
 
 function createListItem(classes) {

@@ -14,12 +14,8 @@ async function runMoviePage() {
     const fullMovie = oData.fullInfoMovie;
     const movieInformationRef = document.getElementById("movieInformation");
     
-
-    //Bara ha denna funktion
     createMovieTitles(fullMovie, movieInformationRef);
     
-
-    // Funktion för att skapa en section
     const posterPlotContainerHTML = createSection("movie-information__flex-container movie-information__flex-container--position-relative");
     
     createPoster(fullMovie, posterPlotContainerHTML, false);
