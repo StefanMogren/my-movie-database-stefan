@@ -1,11 +1,11 @@
-import { createListItem, createUnorderedList, createAnchor, createMovieTitles, createSection} from "../utils/domUtils.js";
+import { createListItem, createH1, createParagraph, createUnorderedList, createAnchor, createSection} from "../utils/domUtils.js";
 import { createPoster } from "./movieCard.js";
 
 function createMovieSection(fullMovie) {
     const movieInformationRef = document.getElementById("movieInformation");
     const posterPlotContainerHTML = createSection("movie-information__flex-container movie-information__flex-container--position-relative");
     
-    createMovieTitles(fullMovie, movieInformationRef);
+    createMovieTitle(fullMovie, movieInformationRef);
     movieInformationRef.appendChild(posterPlotContainerHTML);
     createPoster(fullMovie, posterPlotContainerHTML, false);
     createPlot(fullMovie, posterPlotContainerHTML);
@@ -26,10 +26,10 @@ function createMetadata(movie, movieInformationRef) {
     movieInformationRef.appendChild(ulOuterHTML);
 }
 
-function createMetaLine(metaName, metaContent, addInnerList) {
+function createMetaLine(metaName, metaContent, separateMetaContent) {
     const outerLiHTML = createListItem("movie-information__list-flex movie-information__list-flex--padding-1-0 movie-information__list-flex--border-top");
     
-    if(addInnerList === true) {
+    if(separateMetaContent === true) {
         outerLiHTML.textContent = `${metaName}:`;
         const innerUlHTML = createUnorderedList("movie-information__list-flex");
         
@@ -58,8 +58,7 @@ function createMetaLine(metaName, metaContent, addInnerList) {
 }
 
 function createScore(ratings) {
-    const ulHTML = document.createElement("ul");
-    ulHTML.className = "movie-information__flex-container movie-information__flex-container--padding-bottom-1";
+    const ulHTML = createUnorderedList("movie-information__flex-container movie-information__flex-container--padding-bottom-1");
     
     ratings.forEach( rating => {
         const listItemHTML = document.createElement("li");
@@ -67,17 +66,33 @@ function createScore(ratings) {
         ulHTML.appendChild(listItemHTML);
     })
     return ulHTML;
+}
+
+function createMovieTitle(movie, movieInformationRef) {
+    const titleHTML = createH1("movie-information__title");
+    titleHTML.textContent = movie.Title;
     
+    const unorderedListHTML = createUnorderedList("movie-information__list-flex");
+
+    const infoArray = [movie.Type, movie.Year, movie.Rated, movie.Runtime];
+
+
+    infoArray.forEach( info => {
+        const listItemHTML = createListItem("movie-information__info-list-item");
+        listItemHTML.textContent = info
+        unorderedListHTML.appendChild(listItemHTML);
+    })
+
+    movieInformationRef.appendChild(titleHTML)
+    movieInformationRef.appendChild(unorderedListHTML)
 }
 
 function createGenres(genres, movieInformationRef) {
-    const genreUlHTML = document.createElement("ul");
-    genreUlHTML.classList.add("movie-information__flex-container");
+    const genreUlHTML = createUnorderedList("movie-information__flex-container");
     const genresArray = genres.split(", ");
     
     genresArray.forEach( genre => {
-        const listItemHTML = document.createElement("li");
-        listItemHTML.classList.add("movie-information__genre-list-item");
+        const listItemHTML = createListItem("movie-information__genre-list-item");
         listItemHTML.textContent = genre;
         
         genreUlHTML.appendChild(listItemHTML);
@@ -86,9 +101,8 @@ function createGenres(genres, movieInformationRef) {
     movieInformationRef.appendChild(genreUlHTML);
 }
 
-function createPlot(movie, htmlContainer) {
-    const plotParagraphHTML = document.createElement("p");
-    plotParagraphHTML.classList.add("movie-information__plot");
+function createPlot(movie, posterPlotContainerHTML) {
+    const plotParagraphHTML = createParagraph("movie-information__plot");
     plotParagraphHTML.textContent = movie.Plot;
     
     plotParagraphHTML.addEventListener("click", () => {
@@ -97,7 +111,7 @@ function createPlot(movie, htmlContainer) {
     
     const containerHTML = document.createElement("div");
     containerHTML.appendChild(plotParagraphHTML);
-    htmlContainer.appendChild(containerHTML);
+    posterPlotContainerHTML.appendChild(containerHTML);
 }
 
 export { createMovieSection };
