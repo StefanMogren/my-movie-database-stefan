@@ -1,5 +1,5 @@
 import { checkFavoritesLocalStorage, setFavoritesLocalStorage } from "../modules/localStorage.js";
-import { createDiv, createH3, createAnchor } from "../utils/domUtils.js";
+import { createDiv, createH3, createAnchor, createImg } from "../utils/domUtils.js";
 
 /* --------------- Huvudfunktionen --------------- */
 function createMovieCard(movie) {
@@ -11,24 +11,15 @@ function createMovieCard(movie) {
 
     
     // Trailerlänken
-    const trailerALinkHTML = createAnchor("card-container__trailer-link")
-    trailerALinkHTML.href = movie.Trailer_link || `https://www.youtube.com/results?search_query=${movie.Title.replaceAll(" ", "+")}+trailer`;
     
 
-    const playIconHTML = document.createElement("img");
-    playIconHTML.src = "../res/icons/play-white.svg";
-    playIconHTML.classList.add("card-container__play-icon");
-    playIconHTML.alt = "Play trailer icon"
-    
-    trailerALinkHTML.appendChild(playIconHTML);
-    trailerALinkHTML.innerHTML += "Trailer";
     
     // Titeln och trailern läggs in i en div-container
     innerDivHTML.classList.add("card-container__inner-container")
     innerDivHTML.appendChild(titleH3HTML);
-    innerDivHTML.appendChild(trailerALinkHTML);
     
-    
+    createTrailerLink(movie.Trailer_link, innerDivHTML);
+
     // Kortbehållaren
     const cardSectionHTML = document.createElement("section");
     cardSectionHTML.classList.add("card-container__card")
@@ -39,6 +30,20 @@ function createMovieCard(movie) {
     
     const cardContainerREF = document.getElementById("cardContainer");
     cardContainerREF.appendChild(cardSectionHTML);
+}
+
+function createTrailerLink(trailerLink, innerDivHTML) {
+    const trailerALinkHTML = createAnchor("card-container__trailer-link")
+    trailerALinkHTML.href = trailerLink || `https://www.youtube.com/results?search_query=${movie.Title.replaceAll(" ", "+")}+trailer`;
+
+    const playIconHTML = createImg("card-container__play-icon");
+    playIconHTML.src = "../res/icons/play-white.svg";
+    playIconHTML.classList.add("card-container__play-icon");
+    playIconHTML.alt = "Play trailer icon"
+    
+    trailerALinkHTML.appendChild(playIconHTML);
+    trailerALinkHTML.innerHTML += "Trailer";
+    innerDivHTML.appendChild(trailerALinkHTML);
 }
 
 function createPoster(movie, cardSectionHTML, addPosterLink) {

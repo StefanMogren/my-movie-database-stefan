@@ -34,10 +34,9 @@ function createDiv(classes) {
     return divHTML;
 };
 
-function createImg(classes, href) {
+function createImg(classes) {
     const imgHTML = document.createElement("img");
     imgHTML.className = classes;
-    imgHTML.href = href;
     return imgHTML;
 }
 
