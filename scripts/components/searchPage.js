@@ -1,11 +1,11 @@
 import { oData } from "../data/data.js";
 import { createMovieCard } from "./movieCard.js";
-import { apiKeyOMDb } from "../../apiKeys/apiKeyOMDb.js"
+import { apiKeyOMDb } from "../../apiKeys/apiKeyOMDb.js";
 import { searchOMDbMoviesAPI } from "../modules/api.js";
+import { getURLSearchParams } from "../utils/utils.js";
 
 async function runSearchPage() {
-    const urlParams = new URLSearchParams(window.location.search);
-    oData.searchInput = urlParams.get("searchMovie");
+    oData.searchInput = getURLSearchParams("searchMovie");
 
     // Uppdaterar oData.searchedMovies med svaret från API:et
     await searchOMDbMoviesAPI(apiKeyOMDb, oData.searchInput);
