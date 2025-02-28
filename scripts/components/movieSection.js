@@ -5,9 +5,8 @@ function createMovieSection(fullMovie) {
     const movieInformationRef = document.getElementById("movieInformation");
     const posterPlotContainerHTML = createSection("movie-information__flex-container movie-information__flex-container--position-relative");
 
-    movieInformationRef.appendChild(posterPlotContainerHTML);
-    
     createMovieTitles(fullMovie, movieInformationRef);
+    movieInformationRef.appendChild(posterPlotContainerHTML);
     createPoster(fullMovie, posterPlotContainerHTML, false);
     createPlot(fullMovie, posterPlotContainerHTML);
     createGenres(fullMovie.Genre, movieInformationRef);
