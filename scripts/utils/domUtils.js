@@ -24,6 +24,12 @@ function createListItem(classes) {
     return listItemHTML;
 }
 
+function createSection(classes) {
+    const sectionHTML = document.createElement("section");
+    sectionHTML.className = classes;
+    return sectionHTML;
+}
+
 function createUnorderedList(classes) {
     const unorderedListHTML = document.createElement("ul");
     unorderedListHTML.className = classes;
@@ -36,4 +42,4 @@ function createAnchor(classes) {
     return anchorHTML;
 }
 
-export { createMovieTitles, createListItem, createUnorderedList, createAnchor };
+export { createMovieTitles, createSection, createListItem, createUnorderedList, createAnchor };

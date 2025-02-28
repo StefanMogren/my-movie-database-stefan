@@ -1,5 +1,5 @@
 // import { oData } from "../data/data";
-import { createMovieTitles, createListItem, createUnorderedList, createAnchor } from "../utils/domUtils.js";
+import { createMovieTitles, createSection, createListItem, createUnorderedList, createAnchor } from "../utils/domUtils.js";
 import { createPoster } from "./movieCard.js";
 import { fetchOMDbFullMovieAPI } from "../modules/api.js";
 import { apiKeyOMDb } from "../../apiKeys/apiKeyOMDb.js"
@@ -10,22 +10,23 @@ async function runMoviePage() {
     const imdbID = getURLSearchParams("imdbid");
     await fetchOMDbFullMovieAPI(apiKeyOMDb, imdbID);
 
+    // Om möjligt skippa dessa två
     const fullMovie = oData.fullInfoMovie;
-    
     const movieInformationRef = document.getElementById("movieInformation");
     
+
+    //Bara ha denna funktion
     createMovieTitles(fullMovie, movieInformationRef);
     
-    const posterPlotContainerHTML = document.createElement("section");
-    posterPlotContainerHTML.classList.add("movie-information__flex-container")
-    posterPlotContainerHTML.classList.add("movie-information__flex-container--position-relative")
+
+    // Funktion för att skapa en section
+    const posterPlotContainerHTML = createSection("movie-information__flex-container movie-information__flex-container--position-relative");
     
     createPoster(fullMovie, posterPlotContainerHTML, false);
     createPlot(fullMovie, posterPlotContainerHTML);
     
     movieInformationRef.appendChild(posterPlotContainerHTML);
     movieInformationRef.appendChild(createGenres(fullMovie.Genre));
-    // movieInformationRef.appendChild(createFavoriteButton());
     movieInformationRef.appendChild(createMetadata(fullMovie));
 }
 
@@ -53,7 +54,6 @@ function createMetaLine(metaName, metaContent, addInnerList) {
         
         const peoplesArray = metaContent.split(", ")
         peoplesArray.forEach( name => {
-
             const aHTML = createAnchor("movie-information__meta-link");
             aHTML.textContent = name;
             aHTML.href = `https://www.google.se/search?q=${name.replaceAll(" ", "+")}`
@@ -86,15 +86,6 @@ function createScore(ratings) {
     
 }
 
-/* 
-function createFavoriteButton() {
-    const favoriteButtonHTML = document.createElement("button");
-    favoriteButtonHTML.classList.add("movie-information__favorite-btn");
-    favoriteButtonHTML.textContent = "+ Add to favorites";
-    
-    return favoriteButtonHTML;
-} */
-
 function createGenres(genres) {
     const genreUlHTML = document.createElement("ul");
     genreUlHTML.classList.add("movie-information__flex-container");
@@ -111,7 +102,6 @@ function createGenres(genres) {
     return genreUlHTML;
 }
 
-
 function createPlot(movie, htmlContainer) {
     const plotParagraphHTML = document.createElement("p");
     plotParagraphHTML.classList.add("movie-information__plot");
@@ -124,7 +114,6 @@ function createPlot(movie, htmlContainer) {
     const containerHTML = document.createElement("div");
     containerHTML.appendChild(plotParagraphHTML);
     htmlContainer.appendChild(containerHTML);
-    
 }
 
 export { runMoviePage };
