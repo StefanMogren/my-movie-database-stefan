@@ -4,7 +4,7 @@ import { oData } from "./data/data.js";
 import { runMoviePage } from "./components/moviePage.js";
 import { runFavoritesPage } from "./components/favoritesPage.js"
 import { runSearchPage } from "./components/searchPage.js";
-import { runIndexPage } from "./components/index.js";
+import { runIndexPage } from "./components/indexPage.js";
 
 // Om index.html-sidan laddas körs detta
 if(window.location.pathname === '/' || window.location.pathname === '/index.html') {
