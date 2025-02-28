@@ -1,7 +1,7 @@
 @import url('./carousel.css');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
-/* Variables */
+/* --------------- Variables ---------------*/
 :root {
     --header-grey: #121212;
     /* Primary BG bör vara din bakgrundsfärg */
@@ -11,23 +11,27 @@
     --text-yellow: #F5C518;
 }
 
-/* Base */
+/* --------------- Base ---------------*/
 * {
-    box-sizing: border-box;
     padding: 0;
     margin: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+    font-weight: lighter;
+    color: var(--primary-white);
 }
 
 body {
-    background-color: var(--primary-bg);
     max-width: 100%;
+    background-color: var(--primary-bg);
 }
 
-/* Utils */
+/* --------------- Utils ---------------*/
 .content-wrapper {
     max-width: 1180px;
     margin: 0 auto;
 }
+
 .center {
     margin: 0 auto;
 }
@@ -36,11 +40,12 @@ body {
     display: none;
 }
 
+/* --------------- .header ---------------*/
 .header {
-    background-color: var(--header-grey);
     width: 100%;
     padding: 1.5rem;
     z-index: 999;
+    background-color: var(--header-grey);
 }
 
 .header__flex {
@@ -65,20 +70,253 @@ body {
     padding: 1rem;
     border-radius: 2rem 0 0 2rem;
     border: none;
+    color: black;
 }
 
 .header__form-btn {
-    border-radius: 0 2rem 2rem 0;
     width: 5rem;
+    border-radius: 0 2rem 2rem 0;
     border: none;
     cursor: pointer;
+    color: black;
 }
 
 .header__fav-btn {
+    border: none;
+    cursor: pointer;
     text-decoration: none;
     font-size: 1.5rem;
     color: var(--text-yellow);
     background: none;
+}
+
+.hero-title {
+    text-align: center;
+}
+
+/* --------------- .card-container ---------------*/
+.card-container {
+    margin: 2rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.card-container__card {
+    position: relative;
+    flex-basis: 200px;
+    flex-grow: 1;
+    max-width: 250px;
+    border-radius: 0 15px 15px 15px;
+    background-color: rgb(30, 30, 30);
+}
+
+.card-container__poster {
+    width: 100%;
+    aspect-ratio: 1 / 1.5;
+    transition: filter 0.3s;
+    border-top-right-radius: 15px;
+}
+
+.card-container__poster:hover {
+    transition: filter 0.3s;
+    filter: brightness(90%);
+}
+
+.card-container__trailer-link {
+    width: fit-content;
+    padding: 0.5rem 0.8rem;
+    display: flex;
+    gap: 0.5rem;
+    align-self: center;
+    border-radius: 25px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.card-container__trailer-link:hover {
+    transition: background-color 0.3s;
+    background-color: rgb(46, 46, 46);
+}
+
+.card-container__play-icon {
+    width: 0.8rem;
+}
+
+.card-container__inner-container {
+    height: 6rem;
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-container__title {
+    font-size: 1rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+/* --------------- .favorite-bookmark ---------------*/
+.favorite-bookmark {
+    width: 40px;
+    position: absolute;
+    top: 0.2rem;
+    left: 0.2rem;
     border: none;
+    transition: background-color 0.35s;
+    background: rgb(255, 255, 255, 0.4);
+}
+
+.favorite-bookmark:hover {
+    transition: background-color 0.35s;
     cursor: pointer;
+    background: rgb(255, 255, 255, 0.7);
+
+}
+
+/* --------------- .movie-information ---------------*/
+.movie-information {
+    margin: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.movie-information__title {
+    font-family: sans-serif;
+    font-weight: lighter;
+    font-size: 2rem;
+}
+
+.movie-information__div-container {
+    position: relative;
+}
+
+.movie-information__poster {
+    width: 200px;
+    max-height: 300px;
+    aspect-ratio: 1/1.5;
+}
+
+.movie-information__plot {
+    line-height: 1.4rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 13;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.movie-information__plot--display-block {
+    display: block;
+}
+
+.movie-information__flex-container {
+    display: flex;
+    gap: 0.8rem;
+    list-style-type: none;
+}
+.movie-information__flex-container--padding-bottom-1 {
+    padding-bottom: 1rem;
+}
+
+.movie-information__list-flex {
+    display: flex;
+    gap: 0.8rem;
+    list-style-type: none;
+}
+
+.movie-information__list-flex--flex-wrap {
+    flex-wrap: wrap;
+}
+
+.movie-information__list-flex--padding-1-0 {
+    padding: 1rem 0;
+}
+
+.movie-information__list-flex--border-top {
+    border-top: 1px rgb(255, 255, 255, 0.7) solid;
+}
+
+.movie-information__flex-container--border-top {
+    border-top: 1px rgb(255, 255, 255, 0.7) solid;
+}
+
+.movie-information__info-list-item {
+    margin-left: 1rem;
+    list-style-type: disc;
+}
+.movie-information__info-list-item::first-letter {
+    text-transform: capitalize;
+}
+.movie-information__info-list-item:first-of-type {
+    margin: 0;
+    list-style-type: none;
+}
+
+.movie-information__genre-list-item {
+    padding: 0.3rem 0.7rem;
+    border: 1px var(--primary-white) solid;
+    border-radius: 50px;
+}
+
+.movie-information__meta-link {
+    color: rgb(87, 153, 239);
+    text-decoration: none;
+}
+.movie-information__meta-link:hover {
+    text-decoration: underline;
+}
+
+/* --------------- @media screen ---------------*/
+@media screen and (max-width: 750px) {
+    .header {
+        padding: 1rem;
+    }
+
+    .card-container { 
+        margin: 1rem;
+    }
+
+    .card-container__card {
+        flex-basis: 150px;
+    }
+
+    .movie-information {
+        margin: 1rem;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .header__flex {
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .header__form {
+        flex: 0 0 100%;
+        order: 3;
+    }
+
+    .header__input {
+        width: 70%;
+    }
+
+    .header__fav-btn {
+        order: 2;
+    }
+}
+@media screen and (max-width: 550px) {
+    .movie-information__flex-container {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .movie-information__plot {
+        -webkit-line-clamp: 3;
+    }
 }

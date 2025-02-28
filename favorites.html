@@ -1,31 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Movie Database - Favorites</title>
-    <link rel="stylesheet" href="./styles/style.css" />
-    <script
-      src="https://kit.fontawesome.com/f300007e95.js"
-      crossorigin="anonymous"
-    ></script>
-    <script type="module" src="./scripts/script.js"></script>
-  </head>
-  <body>
-    <header class="header">
-      <div class="content-wrapper header__flex">
-        <a href="index.html"
-          ><img class="header__logo" src="./res/logo.png" alt="logotype"
-        /></a>
-      </div>
-    </header>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Movie Database - Favorites</title>
+  <link rel="stylesheet" href="./styles/style.css" />
+  <script
+  src="https://kit.fontawesome.com/f300007e95.js"
+  crossorigin="anonymous"
+  ></script>
+  <script type="module" src="./scripts/script.js"></script>
+</head>
 
-    <!-- Favorite movies section -->
-    <section>
-      <div class="content-wrapper">
-        <h2 class="favorites-title" id="favoritesTitle">Your favorites</h2>
-        <section class="card-container" id="cardContainer"></section>
-      </div>
-    </section>
-  </body>
+<body>
+  
+  <!--------------- Header --------------->
+  <header class="header">
+    <div class="content-wrapper header__flex">
+      
+      <!-- Loggan -->
+      <a href="index.html"
+      ><img class="header__logo" src="./res/logo.png" alt="logotype"
+      /></a>
+      
+      <!-- Sökformuläret -->
+      <form id="searchForm" class="header__form" action="/search.html" method="get">
+        <input id="searchInput" class="header__input" type="text" name="searchMovie" aria-label="Search"/>
+        <button id="searchBtn" class="header__form-btn">Search</button>
+      </form>
+      
+      <!-- Länken till sidan för favoriter -->
+      <a href="./favorites.html" class="header__fav-btn" id="favBtn">Favorites</a>
+    </div>
+  </header>
+  
+  <!--------------- Sektionen för favoriterna --------------->
+  <!-- Favorite movies section -->
+  <main class="content-wrapper">
+      <h1 class="hero-title" id="favoritesTitle">Your favorites</h1>
+      
+      <!-- Behållaren för favoriterna -->
+      <section class="card-container" id="cardContainer"></section>
+  </main>
+  
+</body>
 </html>
