@@ -8,25 +8,24 @@ import { getURLSearchParams } from "../utils/utils.js";
 
 async function runMoviePage() {
     const imdbID = getURLSearchParams("imdbid");
+    // Uppdaterar oData.fullInfoMovie med svaret från API:et
     await fetchOMDbFullMovieAPI(apiKeyOMDb, imdbID);
 
-    // Om möjligt skippa dessa två
     const fullMovie = oData.fullInfoMovie;
     const movieInformationRef = document.getElementById("movieInformation");
+    const posterPlotContainerHTML = createSection("movie-information__flex-container movie-information__flex-container--position-relative");
+
+    movieInformationRef.appendChild(posterPlotContainerHTML);
     
     createMovieTitles(fullMovie, movieInformationRef);
-    
-    const posterPlotContainerHTML = createSection("movie-information__flex-container movie-information__flex-container--position-relative");
-    
     createPoster(fullMovie, posterPlotContainerHTML, false);
     createPlot(fullMovie, posterPlotContainerHTML);
-    
-    movieInformationRef.appendChild(posterPlotContainerHTML);
-    movieInformationRef.appendChild(createGenres(fullMovie.Genre));
-    movieInformationRef.appendChild(createMetadata(fullMovie));
+    createGenres(fullMovie.Genre, movieInformationRef);
+    createMetadata(fullMovie, movieInformationRef);
 }
 
-function createMetadata(movie) {
+// Flytta till annan js-fil
+function createMetadata(movie, movieInformationRef) {
     const ulOuterHTML = createUnorderedList();
     
     ulOuterHTML.appendChild(createScore(movie.Ratings));
@@ -36,10 +35,10 @@ function createMetadata(movie) {
     ulOuterHTML.appendChild(createMetaLine("Box Office", movie.BoxOffice, false));
     ulOuterHTML.appendChild(createMetaLine("Awards", movie.Awards, false));
     
-    return ulOuterHTML;
+    movieInformationRef.appendChild(ulOuterHTML);
 }
 
-
+// Flytta till annan js-fil
 function createMetaLine(metaName, metaContent, addInnerList) {
     const outerLiHTML = createListItem("movie-information__list-flex movie-information__list-flex--padding-1-0 movie-information__list-flex--border-top");
     
@@ -68,7 +67,7 @@ function createMetaLine(metaName, metaContent, addInnerList) {
     
 }
 
-
+// Flytta till annan js-fil
 function createScore(ratings) {
     const ulHTML = document.createElement("ul");
     ulHTML.className = "movie-information__flex-container movie-information__flex-container--padding-bottom-1";
@@ -82,7 +81,8 @@ function createScore(ratings) {
     
 }
 
-function createGenres(genres) {
+// Flytta till annan js-fil
+function createGenres(genres, movieInformationRef) {
     const genreUlHTML = document.createElement("ul");
     genreUlHTML.classList.add("movie-information__flex-container");
     const genresArray = genres.split(", ");
@@ -95,9 +95,10 @@ function createGenres(genres) {
         genreUlHTML.appendChild(listItemHTML);
     });
     
-    return genreUlHTML;
+    movieInformationRef.appendChild(genreUlHTML);
 }
 
+// Flytta till annan js-fil
 function createPlot(movie, htmlContainer) {
     const plotParagraphHTML = document.createElement("p");
     plotParagraphHTML.classList.add("movie-information__plot");
