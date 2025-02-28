@@ -8,7 +8,7 @@ async function fetchAPI(api) {
         // Kontroll specifik för OMDb API 
         if(api.includes("omdbapi.com")) {
             const data = await response.json();
-
+            
             // Om OMDb API:ets egna interna kontroll är falsk
             if(data.Response === "False") {
                 // Lagrar OMDbs egna felmeddelande inuti oData
@@ -31,16 +31,12 @@ async function fetchAPI(api) {
         }
         
     } catch (error) {
-        // Om OMDb API
+        console.error(`API fetch for ${api} failed! Status: ${error.message}`)
+        
         if(api.includes("omdbapi.com")) {
-            console.error(`API fetch for ${api} failed! Status: ${error.message}`)
-            
-            // Detta kommer visa OMDb API:ets egna interna errormeddelande
+            // Detta kommer även visa OMDb API:ets egna interna errormeddelande
             console.error(oData.omdbMessage);
-            
-        } else {
-            console.error(`API fetch for ${api} failed! Status: ${error.message}`)
-        } 
+        }
     }
 }
 
@@ -55,6 +51,5 @@ async function fetchOMDbFullMovieAPI(apiKey, imdbId) {
 async function searchOMDbMoviesAPI(apiKey, searchInput) {
     oData.searchedMovies = await fetchAPI(`http://www.omdbapi.com/?apikey=${apiKey}&s=${searchInput}*`)
 }
-
 
 export { fetchTopMoviesAPI, fetchOMDbFullMovieAPI, searchOMDbMoviesAPI };
