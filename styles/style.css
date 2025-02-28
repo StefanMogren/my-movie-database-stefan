@@ -230,6 +230,10 @@ body {
     list-style-type: none;
 }
 
+.movie-information__list-flex--flex-wrap {
+    flex-wrap: wrap;
+}
+
 .movie-information__list-flex--padding-1-0 {
     padding: 1rem 0;
 }
