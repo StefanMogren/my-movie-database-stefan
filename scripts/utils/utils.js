@@ -38,8 +38,6 @@ function pickRandomMovies(amount) {
 function pickTopMovies(amount) {
     const movies = pickRandomMovies(amount)
     
-    console.log(movies)
-    
     // Varje individuella film skickas in i createMovieCard
     movies.forEach( movie => createMovieCard(movie))
 }
@@ -49,4 +47,4 @@ function getURLSearchParams(parameter) {
     return urlParams.get(parameter);
 }
 
-export { randomizeNumbers, pickMovieTrailers, pickRandomMovies, pickTopMovies, getURLSearchParams };
+export { pickMovieTrailers, pickTopMovies, getURLSearchParams };
