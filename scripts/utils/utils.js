@@ -16,7 +16,6 @@ function randomizeNumbers(amount) {
     return numbersArray;
 }
 
-
 function pickMovieTrailers(amount) {
     const movies = pickRandomMovies(amount);
     
@@ -36,7 +35,6 @@ function pickRandomMovies(amount) {
     return moviesArray;
 }
 
-
 function pickTopMovies(amount) {
     const movies = pickRandomMovies(amount)
     
@@ -46,4 +44,9 @@ function pickTopMovies(amount) {
     movies.forEach( movie => createMovieCard(movie))
 }
 
-export { randomizeNumbers, pickMovieTrailers, pickRandomMovies, pickTopMovies };
+function getURLSearchParams(parameter) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(parameter);
+}
+
+export { randomizeNumbers, pickMovieTrailers, pickRandomMovies, pickTopMovies, getURLSearchParams };

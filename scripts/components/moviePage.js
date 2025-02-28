@@ -4,13 +4,11 @@ import { createPoster } from "./movieCard.js";
 import { fetchOMDbFullMovieAPI } from "../modules/api.js";
 import { apiKeyOMDb } from "../../apiKeys/apiKeyOMDb.js"
 import { oData } from "../data/data.js";
-
-
+import { getURLSearchParams } from "../utils/utils.js";
 
 async function runMoviePage() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const imdbID = urlParams.get("imdbid")
-    await fetchOMDbFullMovieAPI(apiKeyOMDb, imdbID)
+    const imdbID = getURLSearchParams("imdbid");
+    await fetchOMDbFullMovieAPI(apiKeyOMDb, imdbID);
 
     const fullMovie = oData.fullInfoMovie;
     
