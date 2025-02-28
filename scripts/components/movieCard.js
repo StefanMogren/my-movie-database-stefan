@@ -3,27 +3,22 @@ import { createDiv, createH3, createAnchor, createImg, createSection } from "../
 
 /* --------------- Huvudfunktionen --------------- */
 function createMovieCard(movie) {
-    const innerDivHTML = createDiv("card-container__inner-container");
-
-    // Titeln och trailern läggs in i en div-container
-    createTitle(movie.Title, innerDivHTML)
-    createTrailerLink(movie.Trailer_link, innerDivHTML);
-
-    // Kortbehållaren
+    const cardContainerREF = document.getElementById("cardContainer");
+    
     const cardSectionHTML = createSection("card-container__card");
-    // createPoster skapar även bokmärket
-
     createPoster(movie, cardSectionHTML, true);
     
-    cardSectionHTML.appendChild(innerDivHTML);
+    const innerDivHTML = createDiv("card-container__inner-container");
+    createTitle(movie.Title, innerDivHTML)
+    createTrailerLink(movie, innerDivHTML);
     
-    const cardContainerREF = document.getElementById("cardContainer");
+    cardSectionHTML.appendChild(innerDivHTML);
     cardContainerREF.appendChild(cardSectionHTML);
 }
 
-function createTrailerLink(trailerLink, innerDivHTML) {
+function createTrailerLink(movie, innerDivHTML) {
     const trailerALinkHTML = createAnchor("card-container__trailer-link")
-    trailerALinkHTML.href = trailerLink || `https://www.youtube.com/results?search_query=${movie.Title.replaceAll(" ", "+")}+trailer`;
+    trailerALinkHTML.href = movie.Trailer_link || `https://www.youtube.com/results?search_query=${movie.Title.replaceAll(" ", "+")}+trailer`;
 
     const playIconHTML = createImg("card-container__play-icon");
     playIconHTML.src = "../res/icons/play-white.svg";
