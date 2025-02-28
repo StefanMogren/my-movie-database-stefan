@@ -1,8 +1,19 @@
 // import { oData } from "../data/data";
 import { createMovieTitles, createListItem, createUnorderedList, createAnchor } from "../utils/domUtils.js";
 import { createPoster } from "./movieCard.js";
+import { fetchOMDbFullMovieAPI } from "../modules/api.js";
+import { apiKeyOMDb } from "../../apiKeys/apiKeyOMDb.js"
+import { oData } from "../data/data.js";
 
-function runMoviePage(fullMovie) {
+
+
+async function runMoviePage() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const imdbID = urlParams.get("imdbid")
+    await fetchOMDbFullMovieAPI(apiKeyOMDb, imdbID)
+
+    const fullMovie = oData.fullInfoMovie;
+    
     const movieInformationRef = document.getElementById("movieInformation");
     
     createMovieTitles(fullMovie, movieInformationRef);
