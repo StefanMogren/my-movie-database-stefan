@@ -1,5 +1,5 @@
 import { oData } from "../data/data.js";
-import { createMovieCard } from "./movieCard.js";
+import { createMovieCard } from "../components/movieCard.js";
 import { apiKeyOMDb } from "../../apiKeys/apiKeyOMDb.js";
 import { searchOMDbMoviesAPI } from "../modules/api.js";
 import { getURLSearchParams } from "../utils/utils.js";

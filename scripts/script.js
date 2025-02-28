@@ -1,7 +1,7 @@
-import { runIndexPage } from "./components/indexPage.js";
-import { runFavoritesPage } from "./components/favoritesPage.js";
-import { runMoviePage } from "./components/moviePage.js";
-import { runSearchPage } from "./components/searchPage.js";
+import { runIndexPage } from "./pages/indexPage.js";
+import { runFavoritesPage } from "./pages/favoritesPage.js";
+import { runMoviePage } from "./pages/moviePage.js";
+import { runSearchPage } from "./pages/searchPage.js";
 
 // Om index.html-sidan laddas körs detta
 if(window.location.pathname === '/' || window.location.pathname === '/index.html') {
