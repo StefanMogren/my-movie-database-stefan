@@ -1,4 +1,4 @@
-import { createListItem, createUnorderedList, createAnchor, createMovieTitles, createSection} from "../utils/domUtils.js";
+import { createListItem, createParagraph, createUnorderedList, createAnchor, createMovieTitles, createSection} from "../utils/domUtils.js";
 import { createPoster } from "./movieCard.js";
 
 function createMovieSection(fullMovie) {
@@ -84,8 +84,7 @@ function createGenres(genres, movieInformationRef) {
 }
 
 function createPlot(movie, htmlContainer) {
-    const plotParagraphHTML = document.createElement("p");
-    plotParagraphHTML.classList.add("movie-information__plot");
+    const plotParagraphHTML = createParagraph("movie-information__plot");
     plotParagraphHTML.textContent = movie.Plot;
     
     plotParagraphHTML.addEventListener("click", () => {
