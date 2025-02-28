@@ -179,6 +179,10 @@ body {
     font-size: 2rem;
 }
 
+.movie-information__div-container {
+    position: relative;
+}
+
 .movie-information__poster {
     width: 200px;
     aspect-ratio: 1/1.5;
