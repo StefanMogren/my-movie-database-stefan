@@ -1,29 +1,18 @@
 import { checkFavoritesLocalStorage, setFavoritesLocalStorage } from "../modules/localStorage.js";
-import { createDiv, createH3, createAnchor, createImg } from "../utils/domUtils.js";
+import { createDiv, createH3, createAnchor, createImg, createSection } from "../utils/domUtils.js";
 
 /* --------------- Huvudfunktionen --------------- */
 function createMovieCard(movie) {
-    const innerDivHTML = document.createElement("div");
+    const innerDivHTML = createDiv("card-container__inner-container");
 
-    // Filmtiteln
-    const titleH3HTML = createH3("card-container__title");
-    titleH3HTML.textContent = movie.Title;
-
-    
-    // Trailerlänken
-    
-
-    
     // Titeln och trailern läggs in i en div-container
-    innerDivHTML.classList.add("card-container__inner-container")
-    innerDivHTML.appendChild(titleH3HTML);
-    
+    createTitle(movie.Title, innerDivHTML)
     createTrailerLink(movie.Trailer_link, innerDivHTML);
 
     // Kortbehållaren
-    const cardSectionHTML = document.createElement("section");
-    cardSectionHTML.classList.add("card-container__card")
+    const cardSectionHTML = createSection("card-container__card");
     // createPoster skapar även bokmärket
+
     createPoster(movie, cardSectionHTML, true);
     
     cardSectionHTML.appendChild(innerDivHTML);
@@ -44,7 +33,13 @@ function createTrailerLink(trailerLink, innerDivHTML) {
     trailerALinkHTML.appendChild(playIconHTML);
     trailerALinkHTML.innerHTML += "Trailer";
     innerDivHTML.appendChild(trailerALinkHTML);
-}
+};
+
+function createTitle(title, innerDivHTML) {
+    const titleH3HTML = createH3("card-container__title");
+    titleH3HTML.textContent = title;
+    innerDivHTML.appendChild(titleH3HTML)
+};
 
 function createPoster(movie, cardSectionHTML, addPosterLink) {
     const posterImgHTML = document.createElement("img");
@@ -79,7 +74,7 @@ function createPoster(movie, cardSectionHTML, addPosterLink) {
     }
     
     createFavoriteBookmark(divContainerHTML, movie);
-}
+};
 
 
 function createFavoriteBookmark(cardSectionHTML, movie) {
@@ -99,6 +94,6 @@ function createFavoriteBookmark(cardSectionHTML, movie) {
     
     favoriteButtonHTML.appendChild(favoriteImgHTML);
     cardSectionHTML.appendChild(favoriteButtonHTML);
-}
+};
 
 export { createMovieCard, createPoster };
