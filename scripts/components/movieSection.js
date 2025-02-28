@@ -31,7 +31,7 @@ function createMetaLine(metaName, metaContent, separateMetaContent) {
     
     if(separateMetaContent === true) {
         outerLiHTML.textContent = `${metaName}:`;
-        const innerUlHTML = createUnorderedList("movie-information__list-flex");
+        const innerUlHTML = createUnorderedList("movie-information__list-flex movie-information__list-flex--flex-wrap");
         
         const peoplesArray = metaContent.split(", ")
         peoplesArray.forEach( name => {
