@@ -1,6 +1,5 @@
 function createMovieTitles(movie, movieInformationRef) {
-    const titleHTML = document.createElement("h1");
-    titleHTML.classList.add("movie-information__title");
+    const titleHTML = createH1("movie-information__title");
     titleHTML.textContent = movie.Title;
     
     const unorderedListHTML = createUnorderedList("movie-information__list-flex");
@@ -18,10 +17,22 @@ function createMovieTitles(movie, movieInformationRef) {
     movieInformationRef.appendChild(unorderedListHTML)
 }
 
+function createH1(classes) {
+    const h1HTML = document.createElement("h1");
+    h1HTML.className = classes;
+    return h1HTML;
+}
+
 function createListItem(classes) {
     const listItemHTML = document.createElement("li");
     listItemHTML.className = classes;
     return listItemHTML;
+}
+
+function createSection(classes) {
+    const sectionHTML = document.createElement("section");
+    sectionHTML.className = classes;
+    return sectionHTML;
 }
 
 function createUnorderedList(classes) {
@@ -36,4 +47,4 @@ function createAnchor(classes) {
     return anchorHTML;
 }
 
-export { createMovieTitles, createListItem, createUnorderedList, createAnchor };
+export { createMovieTitles, createSection, createListItem, createUnorderedList, createAnchor };
