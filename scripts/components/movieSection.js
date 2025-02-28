@@ -1,4 +1,4 @@
-import { createListItem, createH1, createParagraph, createUnorderedList, createAnchor, createSection} from "../utils/domUtils.js";
+import { createListItem, createH1, createDiv, createParagraph, createUnorderedList, createAnchor, createSection} from "../utils/domUtils.js";
 import { createPoster } from "./movieCard.js";
 
 function createMovieSection(fullMovie) {
@@ -109,7 +109,7 @@ function createPlot(movie, posterPlotContainerHTML) {
         plotParagraphHTML.classList.toggle("movie-information__plot--display-block")
     })
     
-    const containerHTML = document.createElement("div");
+    const containerHTML = createDiv();
     containerHTML.appendChild(plotParagraphHTML);
     posterPlotContainerHTML.appendChild(containerHTML);
 }
