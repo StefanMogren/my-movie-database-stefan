@@ -70,13 +70,11 @@ function createScore(ratings) {
 }
 
 function createGenres(genres, movieInformationRef) {
-    const genreUlHTML = document.createElement("ul");
-    genreUlHTML.classList.add("movie-information__flex-container");
+    const genreUlHTML = createUnorderedList("movie-information__flex-container");
     const genresArray = genres.split(", ");
     
     genresArray.forEach( genre => {
-        const listItemHTML = document.createElement("li");
-        listItemHTML.classList.add("movie-information__genre-list-item");
+        const listItemHTML = createListItem("movie-information__genre-list-item");
         listItemHTML.textContent = genre;
         
         genreUlHTML.appendChild(listItemHTML);
