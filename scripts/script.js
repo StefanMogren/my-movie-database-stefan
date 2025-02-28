@@ -1,5 +1,5 @@
 import { runIndexPage } from "./components/indexPage.js";
-import { runFavoritesPage } from "./components/favoritesPage.js";
+import { runFavoritesPage } from "./pages/favoritesPage.js";
 import { runMoviePage } from "./components/moviePage.js";
 import { runSearchPage } from "./components/searchPage.js";
 
