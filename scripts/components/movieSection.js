@@ -1,4 +1,19 @@
 import { createListItem, createUnorderedList, createAnchor  } from "../utils/domUtils.js";
+import { createMovieTitles, createSection} from "../utils/domUtils.js";
+import { createPoster } from "./movieCard.js";
+
+function createMovieSection(fullMovie) {
+    const movieInformationRef = document.getElementById("movieInformation");
+    const posterPlotContainerHTML = createSection("movie-information__flex-container movie-information__flex-container--position-relative");
+
+    movieInformationRef.appendChild(posterPlotContainerHTML);
+    
+    createMovieTitles(fullMovie, movieInformationRef);
+    createPoster(fullMovie, posterPlotContainerHTML, false);
+    createPlot(fullMovie, posterPlotContainerHTML);
+    createGenres(fullMovie.Genre, movieInformationRef);
+    createMetadata(fullMovie, movieInformationRef);
+}
 
 function createMetadata(movie, movieInformationRef) {
     const ulOuterHTML = createUnorderedList();
@@ -13,7 +28,6 @@ function createMetadata(movie, movieInformationRef) {
     movieInformationRef.appendChild(ulOuterHTML);
 }
 
-// Flytta till annan js-fil
 function createMetaLine(metaName, metaContent, addInnerList) {
     const outerLiHTML = createListItem("movie-information__list-flex movie-information__list-flex--padding-1-0 movie-information__list-flex--border-top");
     
@@ -42,7 +56,6 @@ function createMetaLine(metaName, metaContent, addInnerList) {
     
 }
 
-// Flytta till annan js-fil
 function createScore(ratings) {
     const ulHTML = document.createElement("ul");
     ulHTML.className = "movie-information__flex-container movie-information__flex-container--padding-bottom-1";
@@ -56,7 +69,6 @@ function createScore(ratings) {
     
 }
 
-// Flytta till annan js-fil
 function createGenres(genres, movieInformationRef) {
     const genreUlHTML = document.createElement("ul");
     genreUlHTML.classList.add("movie-information__flex-container");
@@ -73,7 +85,6 @@ function createGenres(genres, movieInformationRef) {
     movieInformationRef.appendChild(genreUlHTML);
 }
 
-// Flytta till annan js-fil
 function createPlot(movie, htmlContainer) {
     const plotParagraphHTML = document.createElement("p");
     plotParagraphHTML.classList.add("movie-information__plot");
@@ -88,4 +99,4 @@ function createPlot(movie, htmlContainer) {
     htmlContainer.appendChild(containerHTML);
 }
 
-export { createGenres, createMetaLine, createMetadata, createPlot, createScore };
+export { createGenres, createMetaLine, createMetadata, createPlot, createScore, createMovieSection };
