@@ -1,5 +1,5 @@
 import { checkFavoritesLocalStorage, setFavoritesLocalStorage } from "../modules/localStorage.js";
-import { createDiv, createH3, createAnchor, createImg, createSection } from "../utils/domUtils.js";
+import { createDiv, createH3, createAnchor, createImg, createSection, createButton } from "../utils/domUtils.js";
 
 /* --------------- Huvudfunktionen --------------- */
 function createMovieCard(movie) {
@@ -73,10 +73,9 @@ function createPoster(movie, cardSectionHTML, addPosterLink) {
 
 
 function createFavoriteBookmark(cardSectionHTML, movie) {
-    const favoriteButtonHTML = document.createElement("button");
-    favoriteButtonHTML.classList.add("favorite-bookmark");
+    const favoriteButtonHTML = createButton("favorite-bookmark");
     
-    const favoriteImgHTML = document.createElement("img");
+    const favoriteImgHTML = createImg("");
     favoriteImgHTML.id = movie.imdbID;
     favoriteImgHTML.alt = "Favorite bookmark icon";
     
