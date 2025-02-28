@@ -4,6 +4,12 @@ function createH1(classes) {
     return h1HTML;
 };
 
+function createH3(classes) {
+    const h3HTML = document.createElement("h3");
+    h3HTML.className = classes;
+    return h3HTML;
+};
+
 function createParagraph(classes) {
     const paragraphHTML = document.createElement("p");
     paragraphHTML.className = classes;
@@ -28,6 +34,12 @@ function createDiv(classes) {
     return divHTML;
 };
 
+function createImg(classes) {
+    const imgHTML = document.createElement("img");
+    imgHTML.className = classes;
+    return imgHTML;
+}
+
 function createUnorderedList(classes) {
     const unorderedListHTML = document.createElement("ul");
     unorderedListHTML.className = classes;
@@ -40,4 +52,10 @@ function createAnchor(classes) {
     return anchorHTML;
 };
 
-export { createH1, createParagraph, createDiv, createSection, createListItem, createUnorderedList, createAnchor };
+function createButton(classes) {
+    const buttonHTML = document.createElement("button");
+    buttonHTML.className = classes;
+    return buttonHTML;
+};
+
+export { createH1, createH3, createParagraph, createImg, createDiv, createSection, createListItem, createUnorderedList, createAnchor, createButton };
