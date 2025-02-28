@@ -1,11 +1,11 @@
-import { createListItem, createParagraph, createUnorderedList, createAnchor, createMovieTitles, createSection} from "../utils/domUtils.js";
+import { createListItem, createH1, createParagraph, createUnorderedList, createAnchor, createSection} from "../utils/domUtils.js";
 import { createPoster } from "./movieCard.js";
 
 function createMovieSection(fullMovie) {
     const movieInformationRef = document.getElementById("movieInformation");
     const posterPlotContainerHTML = createSection("movie-information__flex-container movie-information__flex-container--position-relative");
     
-    createMovieTitles(fullMovie, movieInformationRef);
+    createMovieTitle(fullMovie, movieInformationRef);
     movieInformationRef.appendChild(posterPlotContainerHTML);
     createPoster(fullMovie, posterPlotContainerHTML, false);
     createPlot(fullMovie, posterPlotContainerHTML);
@@ -66,7 +66,25 @@ function createScore(ratings) {
         ulHTML.appendChild(listItemHTML);
     })
     return ulHTML;
+}
+
+function createMovieTitle(movie, movieInformationRef) {
+    const titleHTML = createH1("movie-information__title");
+    titleHTML.textContent = movie.Title;
     
+    const unorderedListHTML = createUnorderedList("movie-information__list-flex");
+
+    const infoArray = [movie.Type, movie.Year, movie.Rated, movie.Runtime];
+
+
+    infoArray.forEach( info => {
+        const listItemHTML = createListItem("movie-information__info-list-item");
+        listItemHTML.textContent = info
+        unorderedListHTML.appendChild(listItemHTML);
+    })
+
+    movieInformationRef.appendChild(titleHTML)
+    movieInformationRef.appendChild(unorderedListHTML)
 }
 
 function createGenres(genres, movieInformationRef) {
@@ -83,7 +101,7 @@ function createGenres(genres, movieInformationRef) {
     movieInformationRef.appendChild(genreUlHTML);
 }
 
-function createPlot(movie, htmlContainer) {
+function createPlot(movie, posterPlotContainerHTML) {
     const plotParagraphHTML = createParagraph("movie-information__plot");
     plotParagraphHTML.textContent = movie.Plot;
     
@@ -93,7 +111,7 @@ function createPlot(movie, htmlContainer) {
     
     const containerHTML = document.createElement("div");
     containerHTML.appendChild(plotParagraphHTML);
-    htmlContainer.appendChild(containerHTML);
+    posterPlotContainerHTML.appendChild(containerHTML);
 }
 
 export { createMovieSection };
