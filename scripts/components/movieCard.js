@@ -1,4 +1,5 @@
 import { checkFavoritesLocalStorage, setFavoritesLocalStorage } from "../modules/localStorage.js";
+import { createDiv } from "../utils/domUtils.js";
 
 /* --------------- Huvudfunktionen --------------- */
 function createMovieCard(movie) {
@@ -43,8 +44,8 @@ function createMovieCard(movie) {
 function createPoster(movie, cardSectionHTML, addPosterLink) {
     const posterImgHTML = document.createElement("img");
     if(movie.Poster === "N/A" || !movie.Poster) {
-    posterImgHTML.src = "../res/icons/missing-poster.svg";
-    
+        posterImgHTML.src = "../res/icons/missing-poster.svg";
+        
     } else {
         posterImgHTML.src = movie.Poster;
     } 
@@ -54,21 +55,25 @@ function createPoster(movie, cardSectionHTML, addPosterLink) {
     }
     
     posterImgHTML.alt = `Movie poster of ${movie.Title}`;
-    
+    const divContainerHTML = createDiv("movie-information__div-container");
+
     if(addPosterLink === true) {
         const posterLinkHTML = document.createElement("a")
         posterLinkHTML.href =`./movie.html?imdbid=${movie.imdbID}`;
         posterImgHTML.classList.add("card-container__poster");
+        
         posterLinkHTML.appendChild(posterImgHTML);
-        cardSectionHTML.appendChild(posterLinkHTML);
+        divContainerHTML.appendChild(posterLinkHTML)
+        cardSectionHTML.appendChild(divContainerHTML);
         
     } else {
         posterImgHTML.classList.add("movie-information__poster");
-        cardSectionHTML.appendChild(posterImgHTML);
+        divContainerHTML.appendChild(posterImgHTML);
+        cardSectionHTML.appendChild(divContainerHTML);
         
     }
     
-    createFavoriteBookmark(cardSectionHTML, movie);
+    createFavoriteBookmark(divContainerHTML, movie);
 }
 
 

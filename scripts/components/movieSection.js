@@ -109,7 +109,7 @@ function createPlot(movie, posterPlotContainerHTML) {
         plotParagraphHTML.classList.toggle("movie-information__plot--display-block")
     })
     
-    const containerHTML = createDiv();
+    const containerHTML = createDiv("");
     containerHTML.appendChild(plotParagraphHTML);
     posterPlotContainerHTML.appendChild(containerHTML);
 }
