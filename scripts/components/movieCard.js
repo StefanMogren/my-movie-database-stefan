@@ -1,12 +1,14 @@
 import { checkFavoritesLocalStorage, setFavoritesLocalStorage } from "../modules/localStorage.js";
-import { createDiv } from "../utils/domUtils.js";
+import { createDiv, createH3 } from "../utils/domUtils.js";
 
 /* --------------- Huvudfunktionen --------------- */
 function createMovieCard(movie) {
+    const innerDivHTML = document.createElement("div");
+
     // Filmtiteln
-    const titleH3HTML = document.createElement("h3");
-    titleH3HTML.classList.add("card-container__title");
+    const titleH3HTML = createH3("card-container__title");
     titleH3HTML.textContent = movie.Title;
+
     
     // Trailerlänken
     const trailerALinkHTML = document.createElement("a");
@@ -22,7 +24,6 @@ function createMovieCard(movie) {
     trailerALinkHTML.innerHTML += "Trailer";
     
     // Titeln och trailern läggs in i en div-container
-    const innerDivHTML = document.createElement("div");
     innerDivHTML.classList.add("card-container__inner-container")
     innerDivHTML.appendChild(titleH3HTML);
     innerDivHTML.appendChild(trailerALinkHTML);
@@ -39,7 +40,6 @@ function createMovieCard(movie) {
     const cardContainerREF = document.getElementById("cardContainer");
     cardContainerREF.appendChild(cardSectionHTML);
 }
-
 
 function createPoster(movie, cardSectionHTML, addPosterLink) {
     const posterImgHTML = document.createElement("img");
@@ -89,7 +89,6 @@ function createFavoriteBookmark(cardSectionHTML, movie) {
     favoriteButtonHTML.addEventListener("click", () => {
         setFavoritesLocalStorage(favoriteImgHTML, movie)
     })
-    
     
     checkFavoritesLocalStorage(favoriteImgHTML, movie);
     

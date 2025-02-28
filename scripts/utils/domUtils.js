@@ -4,6 +4,12 @@ function createH1(classes) {
     return h1HTML;
 };
 
+function createH3(classes) {
+    const h3HTML = document.createElement("h3");
+    h3HTML.className = classes;
+    return h3HTML;
+};
+
 function createParagraph(classes) {
     const paragraphHTML = document.createElement("p");
     paragraphHTML.className = classes;
@@ -40,4 +46,4 @@ function createAnchor(classes) {
     return anchorHTML;
 };
 
-export { createH1, createParagraph, createDiv, createSection, createListItem, createUnorderedList, createAnchor };
+export { createH1, createH3, createParagraph, createDiv, createSection, createListItem, createUnorderedList, createAnchor };
