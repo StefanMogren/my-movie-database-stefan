@@ -22,8 +22,7 @@ function createTrailerLink(movie, innerDivHTML) {
 
     const playIconHTML = createImg("card-container__play-icon");
     playIconHTML.src = "../res/icons/play-white.svg";
-    playIconHTML.classList.add("card-container__play-icon");
-    playIconHTML.alt = "Play trailer icon"
+    playIconHTML.alt = "Play trailer icon";
     
     trailerALinkHTML.appendChild(playIconHTML);
     trailerALinkHTML.innerHTML += "Trailer";
@@ -33,27 +32,28 @@ function createTrailerLink(movie, innerDivHTML) {
 function createTitle(title, innerDivHTML) {
     const titleH3HTML = createH3("card-container__title");
     titleH3HTML.textContent = title;
-    innerDivHTML.appendChild(titleH3HTML)
+    innerDivHTML.appendChild(titleH3HTML);
 };
 
 function createPoster(movie, cardSectionHTML, addPosterLink) {
-    const posterImgHTML = document.createElement("img");
+    const posterImgHTML = createImg("");
     if(movie.Poster === "N/A" || !movie.Poster) {
         posterImgHTML.src = "../res/icons/missing-poster.svg";
+        posterImgHTML.alt = `Placeholder poster for ${movie.Title}`;
         
     } else {
         posterImgHTML.src = movie.Poster;
-    } 
+        posterImgHTML.alt = `Movie poster of ${movie.Title}`;
+    } ;
     
     posterImgHTML.onerror = () => {
         posterImgHTML.src = "../res/icons/missing-poster.svg"
-    }
+    };
     
-    posterImgHTML.alt = `Movie poster of ${movie.Title}`;
     const divContainerHTML = createDiv("movie-information__div-container");
 
     if(addPosterLink === true) {
-        const posterLinkHTML = document.createElement("a")
+        const posterLinkHTML = createAnchor("");
         posterLinkHTML.href =`./movie.html?imdbid=${movie.imdbID}`;
         posterImgHTML.classList.add("card-container__poster");
         
