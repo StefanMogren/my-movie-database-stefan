@@ -1,18 +1,16 @@
 import { apiKeyOMDb } from "../apiKeys/apiKeyOMDb.js"
-import { fetchTopMoviesAPI, fetchOMDbFullMovieAPI, searchOMDbMoviesAPI } from "./modules/api.js";
-import { pickMovieTrailers, pickTopMovies } from "./utils/utils.js";
+import { fetchOMDbFullMovieAPI, searchOMDbMoviesAPI } from "./modules/api.js";
 import { oData } from "./data/data.js";
 import { runMoviePage } from "./components/moviePage.js";
 import { runFavoritesPage } from "./components/favoritesPage.js"
 import { runSearchPage } from "./components/searchPage.js";
+import { runIndexPage } from "./components/indexPage.js";
 
 // Om index.html-sidan laddas körs detta
 if(window.location.pathname === '/' || window.location.pathname === '/index.html') {
     console.log('index.html');
     // oData.movies definieras samt får alla filmer från API:et när fetchTopMoviesAPI() körs
-    await fetchTopMoviesAPI();
-    pickMovieTrailers(5);
-    pickTopMovies(20);
+    runIndexPage();
     
     
     // Om favorites.html laddas körs detta
