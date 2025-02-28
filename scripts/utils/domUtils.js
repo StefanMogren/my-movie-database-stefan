@@ -23,6 +23,12 @@ function createH1(classes) {
     return h1HTML;
 }
 
+function createParagraph(classes) {
+    const paragraphHTML = document.createElement("p");
+    paragraphHTML.className = classes;
+    return paragraphHTML;
+}
+
 function createListItem(classes) {
     const listItemHTML = document.createElement("li");
     listItemHTML.className = classes;
@@ -47,4 +53,4 @@ function createAnchor(classes) {
     return anchorHTML;
 }
 
-export { createMovieTitles, createSection, createListItem, createUnorderedList, createAnchor };
+export { createMovieTitles, createParagraph, createSection, createListItem, createUnorderedList, createAnchor };
