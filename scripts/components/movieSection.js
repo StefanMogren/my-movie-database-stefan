@@ -1,5 +1,4 @@
-import { createListItem, createUnorderedList, createAnchor  } from "../utils/domUtils.js";
-import { createMovieTitles, createSection} from "../utils/domUtils.js";
+import { createListItem, createUnorderedList, createAnchor, createMovieTitles, createSection} from "../utils/domUtils.js";
 import { createPoster } from "./movieCard.js";
 
 function createMovieSection(fullMovie) {
@@ -99,4 +98,4 @@ function createPlot(movie, htmlContainer) {
     htmlContainer.appendChild(containerHTML);
 }
 
-export { createGenres, createMetaLine, createMetadata, createPlot, createScore, createMovieSection };
+export { createMovieSection };
